@@ -1,0 +1,46 @@
+{
+  "name": "internetheroku",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "parallel:script": "cypress run --browser chrome --spec \"$(node scripts/cypress-parallel.js)\"",
+    "cypress:open:mobile": "cypress open --config viewportWidth=375,viewportHeight=667",
+    "cypress:run:chrome": "cypress run --browser chrome",
+    "cypress:run:chrome:headed": "cypress run --headed --browser chrome",
+    "cy:parallel": "node_modules/.bin/cypress-parallel -s cypress:run -t 5 -d 'cypress/e2e/**/*.cy.js'",
+    "clean:reports": "rm -rf mochawesome-report/ TestReport/",
+    "test": "npm run clean:reports && cypress run",
+    "merge:reports": "npx mochawesome-merge --reportDir mochawesome-report > TestReport/cypress-tests-report.json",
+    "create:html:report": "npx mochawesome-report-generator --reportDir TestReport TestReport/cypress-tests-report.json",
+    "generate:html:report": "npm run merge:reports && npm run create:html:report",
+    "cy:run:parallel": "node cypress/scripts/runner executors=2",
+    "move": "cp -r TestReport/**/*.png TestReport",
+    "parallel": "cypress run --browser chrome --spec \"$(node scripts/cypress-parallel.js)\"",
+    "sorry-cypress-dashboard": "cy2 run --parallel --record --key somekey --ci-build-id `date +%s`",
+    "format": "prettier --write \"**/*.+(js|json|yml|md)\"",
+    "percy": "percy exec -- npm run sorry-cypress-dashboard"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@percy/cli": "^1.11.0",
+    "@percy/cypress": "^3.1.2",
+    "cypress": "^10.0.2",
+    "cypress-mochawesome-reporter": "^3.2.1",
+    "cypress-multi-reporters": "^1.6.1",
+    "cypress-parallel": "^0.9.1",
+    "cypress-slack-reporter": "v0.7.1",
+    "eslint-plugin-cypress": "^2.12.1",
+    "mochawesome": "^6.1.1",
+    "mochawesome-merge": "^4.1.0",
+    "mochawesome-report-generator": "^5.1.0",
+    "prettier": "^2.7.1"
+  },
+  "dependencies": {
+    "cy2": "^2.0.1"
+  }
+}
