@@ -5,9 +5,9 @@
     "passes": 35,
     "pending": 0,
     "failures": 2,
-    "start": "2022-10-27T10:14:12.854Z",
-    "end": "2022-10-27T10:15:38.778Z",
-    "duration": 96293,
+    "start": "2022-10-27T10:33:24.597Z",
+    "end": "2022-10-27T10:35:05.080Z",
+    "duration": 95197,
     "testsRegistered": 37,
     "passPercent": 94.5945945945946,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "e34f5cae-e2fb-4d5e-af7f-396ec8c72e50",
+      "uuid": "a3036adb-6ccb-4fc3-8db7-52e55dc00d4e",
       "title": "",
       "fullFile": "cypress/e2e/broken_images.cy.js",
       "file": "cypress/e2e/broken_images.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "2a9cbd09-05bf-43a8-a8aa-ab149c74073c",
+          "uuid": "d74988d5-59d9-46da-a546-feb6e85c4a41",
           "title": "Broken Images",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "Check broken and non broken images in the page",
               "fullTitle": "Broken Images Check broken and non broken images in the page",
               "timedOut": null,
-              "duration": 1646,
+              "duration": 1811,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -47,20 +47,20 @@
               "context": null,
               "code": "cy.visit('/broken_images');\ncy.get('.example > img').each(img => {\n  cy.wrap(img).invoke('attr', 'src').then(imgSrc => {\n    if (imgSrc.includes('asdf') || imgSrc.includes('hjkl')) {\n      cy.log(`Logic to validate broken image whose 'src' is: /${imgSrc}`);\n      expect(img[0].naturalWidth).to.be.eql(0);\n      expect(img[0].naturalHeight).to.be.eql(0);\n      cy.request({\n        url: imgSrc,\n        failOnStatusCode: false\n      }).then(response => {\n        expect(response.status).to.eq(404);\n      });\n    } else {\n      cy.log(`Logic to validate non broken image whose 'src' is: /${imgSrc}`);\n      expect(img[0].naturalWidth).to.be.greaterThan(0);\n      expect(img[0].naturalHeight).to.be.greaterThan(0);\n      cy.request(imgSrc).then(response => {\n        expect(response.status).to.eq(200);\n      });\n    }\n  });\n});",
               "err": {},
-              "uuid": "70f3fab6-15fe-4b54-b59f-8482834ef565",
-              "parentUUID": "2a9cbd09-05bf-43a8-a8aa-ab149c74073c",
+              "uuid": "44f68b4a-0998-46a0-8c57-cd62035eb683",
+              "parentUUID": "d74988d5-59d9-46da-a546-feb6e85c4a41",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "70f3fab6-15fe-4b54-b59f-8482834ef565"
+            "44f68b4a-0998-46a0-8c57-cd62035eb683"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 1646,
+          "duration": 1811,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -76,7 +76,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "784381c9-15ef-439e-8275-1d25c851dd58",
+      "uuid": "02c4f426-ee51-4dc0-8947-15e5dac531d4",
       "title": "",
       "fullFile": "cypress/e2e/add_remove.cy.js",
       "file": "cypress/e2e/add_remove.cy.js",
@@ -85,7 +85,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "4084649b-24a6-4146-8101-64fe2112757d",
+          "uuid": "e976fc0e-e73f-45fa-866e-9dfc1b1fef29",
           "title": "Add/Remove Elements",
           "fullFile": "",
           "file": "",
@@ -96,7 +96,7 @@
               "title": "Validate add/remove elements",
               "fullTitle": "Add/Remove Elements Validate add/remove elements",
               "timedOut": null,
-              "duration": 2977,
+              "duration": 2284,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -105,20 +105,20 @@
               "context": null,
               "code": "cy.visit('/add_remove_elements/');\ncy.log(\"Click 'Add Element button' and check it's visibility after click\");\ncy.contains('Add Element').click().should('be.visible');\ncy.log(\"Click 'Add Element button' using mouse action and check it's visibility after click\");\ncy.contains('Add Element').trigger('mouseover').click().should('be.visible');\ncy.log(\"Click 'Add Element button' using keyboard action and check it's visibility\");\ncy.contains('Add Element').type('{enter}');\ncy.log(\"Click 'Delete button' and check it's length as expected\");\ncy.get(\"button:contains('Delete')\").should('be.visible').its('length').should('eq', 3);\ncy.log('Click all delete button present');\ncy.get(\"button:contains('Delete')\").click({\n  multiple: true\n}).should('not.exist');",
               "err": {},
-              "uuid": "ffe3ac08-1461-4e41-853c-b381bcfa0040",
-              "parentUUID": "4084649b-24a6-4146-8101-64fe2112757d",
+              "uuid": "34031955-da37-4aea-b818-d226474084f4",
+              "parentUUID": "e976fc0e-e73f-45fa-866e-9dfc1b1fef29",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "ffe3ac08-1461-4e41-853c-b381bcfa0040"
+            "34031955-da37-4aea-b818-d226474084f4"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 2977,
+          "duration": 2284,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -134,7 +134,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "281b59e8-3bd1-4c44-af23-45ec250e5866",
+      "uuid": "0269d902-d23c-4e22-90ac-cf6e14465e35",
       "title": "",
       "fullFile": "cypress/e2e/check_boxes.cy.js",
       "file": "cypress/e2e/check_boxes.cy.js",
@@ -143,7 +143,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "002917a3-11b9-4407-9a39-bae967b58ebc",
+          "uuid": "1957be49-5d46-4d13-b051-d35fa124e5d5",
           "title": "Check Boxes",
           "fullFile": "",
           "file": "",
@@ -154,7 +154,7 @@
               "title": "Validate check boxes",
               "fullTitle": "Check Boxes Validate check boxes",
               "timedOut": null,
-              "duration": 2290,
+              "duration": 2005,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -163,20 +163,20 @@
               "context": null,
               "code": "cy.visit('/checkboxes');\ncy.log('Verify selected & unselected checkboxes').get('#checkboxes > input:first-of-type').should('not.be.checked').get('#checkboxes > input:nth-of-type(2)').should('be.checked');\ncy.log('Select check box 1');\ncy.get('#checkboxes > input:first-of-type').click().should('be.checked');\ncy.log('Un-select all checkbox').get('input[type=\"checkbox\"]').uncheck().should('not.be.checked');",
               "err": {},
-              "uuid": "aeb143bc-d8c7-429b-b89f-01a7c12a4b65",
-              "parentUUID": "002917a3-11b9-4407-9a39-bae967b58ebc",
+              "uuid": "65b948f3-9ac6-4d84-aa87-6911e86ef1ec",
+              "parentUUID": "1957be49-5d46-4d13-b051-d35fa124e5d5",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "aeb143bc-d8c7-429b-b89f-01a7c12a4b65"
+            "65b948f3-9ac6-4d84-aa87-6911e86ef1ec"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 2290,
+          "duration": 2005,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -192,7 +192,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "28919391-145c-4b4c-835f-30732686256e",
+      "uuid": "ff84b7b2-62ef-4be2-9674-16bc3fc75c70",
       "title": "",
       "fullFile": "cypress/e2e/basic_auth.cy.js",
       "file": "cypress/e2e/basic_auth.cy.js",
@@ -201,7 +201,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "bec9bc90-b7b5-406f-a42d-baf417688a9f",
+          "uuid": "711d60ab-fced-4aed-838b-d6822b8e6707",
           "title": "Basic Auth",
           "fullFile": "",
           "file": "",
@@ -212,7 +212,7 @@
               "title": "Validate basic auth",
               "fullTitle": "Basic Auth Validate basic auth",
               "timedOut": null,
-              "duration": 2038,
+              "duration": 1323,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -221,20 +221,20 @@
               "context": null,
               "code": "cy.log('Handle basic authentication with the credentials in the URL like this https://username:password@www.example.com/');\ncy.visit('https://admin:admin@the-internet.herokuapp.com/basic_auth');\ncy.contains('Congratulations! You must have the proper credentials.').should('be.visible');",
               "err": {},
-              "uuid": "5ec5f0ea-9525-4432-a750-7b9b4ffc4aa8",
-              "parentUUID": "bec9bc90-b7b5-406f-a42d-baf417688a9f",
+              "uuid": "bd72268f-c379-4fbd-a928-33c0c46b1392",
+              "parentUUID": "711d60ab-fced-4aed-838b-d6822b8e6707",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "5ec5f0ea-9525-4432-a750-7b9b4ffc4aa8"
+            "bd72268f-c379-4fbd-a928-33c0c46b1392"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 2038,
+          "duration": 1323,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -250,7 +250,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "e4119e7f-4f13-423e-b485-64f27605ac60",
+      "uuid": "86376d47-fca6-4380-99ee-fa77b4631351",
       "title": "",
       "fullFile": "cypress/e2e/login_page.cy.js",
       "file": "cypress/e2e/login_page.cy.js",
@@ -259,7 +259,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "bb814569-8107-47bf-9ebd-2ebc0c430ba7",
+          "uuid": "1c6cf299-e877-4cad-a9d8-0eb3931480e4",
           "title": "Login Page",
           "fullFile": "",
           "file": "",
@@ -270,7 +270,7 @@
               "title": "Validate login page with UI approach",
               "fullTitle": "Login Page Validate login page with UI approach",
               "timedOut": null,
-              "duration": 2298,
+              "duration": 2410,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -279,8 +279,8 @@
               "context": null,
               "code": "cy.visit('/login');\ncy.get('#username').type('tomsmith');\ncy.get('#password').type('SuperSecretPassword!').get('.fa').click().get('h2').should('have.text', ' Secure Area');",
               "err": {},
-              "uuid": "4284fe05-bac4-4de2-a474-41a960552903",
-              "parentUUID": "bb814569-8107-47bf-9ebd-2ebc0c430ba7",
+              "uuid": "1bdb3898-d986-4001-8df5-bd97a7c350ee",
+              "parentUUID": "1c6cf299-e877-4cad-a9d8-0eb3931480e4",
               "isHook": false,
               "skipped": false
             },
@@ -288,7 +288,7 @@
               "title": "Validate login page with API approach",
               "fullTitle": "Login Page Validate login page with API approach",
               "timedOut": null,
-              "duration": 723,
+              "duration": 937,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -297,21 +297,21 @@
               "context": null,
               "code": "cy.visit('/login');\ncy.request({\n  method: 'POST',\n  url: '/authenticate',\n  // BaseUrl is prepend to URL\n  form: true,\n  // Indicates the body should be form urlencoded and sets Content-Type: application/x-www-form-urlencoded headers\n  body: {\n    username: 'tomsmith',\n    password: 'SuperSecretPassword!'\n  }\n}).then(response => {\n  expect(response.status).to.eq(200);\n});\ncy.visit('/secure');\ncy.contains('Secure Area').should('be.visible');\ncy.contains('.button', 'Logout').should('be.visible');",
               "err": {},
-              "uuid": "e4c78d94-a018-4061-95f9-958fa6366a99",
-              "parentUUID": "bb814569-8107-47bf-9ebd-2ebc0c430ba7",
+              "uuid": "1380086b-f9a7-4458-b5fb-3b59887937f5",
+              "parentUUID": "1c6cf299-e877-4cad-a9d8-0eb3931480e4",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "4284fe05-bac4-4de2-a474-41a960552903",
-            "e4c78d94-a018-4061-95f9-958fa6366a99"
+            "1bdb3898-d986-4001-8df5-bd97a7c350ee",
+            "1380086b-f9a7-4458-b5fb-3b59887937f5"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 3021,
+          "duration": 3347,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -327,7 +327,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "455222cd-511f-46f0-bb11-f6ef792447d8",
+      "uuid": "0b2918bc-55c6-4ecc-930e-75c4614316bf",
       "title": "",
       "fullFile": "cypress/e2e/context_menu.cy.js",
       "file": "cypress/e2e/context_menu.cy.js",
@@ -336,7 +336,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "aeb71cef-a3f1-4ff1-96b5-831e94ff5681",
+          "uuid": "ef95a7bb-a4a0-46e9-b1c3-89797625d3b9",
           "title": "Context Menu",
           "fullFile": "",
           "file": "",
@@ -347,7 +347,7 @@
               "title": "Validate context menu",
               "fullTitle": "Context Menu Validate context menu",
               "timedOut": null,
-              "duration": 1576,
+              "duration": 1178,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -356,20 +356,20 @@
               "context": null,
               "code": "cy.visit('/context_menu');\ncy.log('Do right click and handling alert').get('#hot-spot').rightclick();\ncy.on('window:alert', alertText => {\n  expect(alertText).eq('You selected a context menu');\n});",
               "err": {},
-              "uuid": "ff426ffa-f728-4560-93bd-4826a3c0291f",
-              "parentUUID": "aeb71cef-a3f1-4ff1-96b5-831e94ff5681",
+              "uuid": "a34b8aed-8871-49b1-bec6-1cb3354209d1",
+              "parentUUID": "ef95a7bb-a4a0-46e9-b1c3-89797625d3b9",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "ff426ffa-f728-4560-93bd-4826a3c0291f"
+            "a34b8aed-8871-49b1-bec6-1cb3354209d1"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 1576,
+          "duration": 1178,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -385,7 +385,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "dad67ecd-a961-4619-b7d3-606442dadbf6",
+      "uuid": "9f802b33-cfb3-4ac9-a27b-ea5377814303",
       "title": "",
       "fullFile": "cypress/e2e/entry_ad.cy.js",
       "file": "cypress/e2e/entry_ad.cy.js",
@@ -394,7 +394,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "f62ee160-bf2b-47d8-9602-415e71240520",
+          "uuid": "a2bf2d29-450b-4eda-97fd-7fea6ed5aa72",
           "title": "Entry Ad",
           "fullFile": "",
           "file": "",
@@ -405,7 +405,7 @@
               "title": "Close entry ad",
               "fullTitle": "Entry Ad Close entry ad",
               "timedOut": null,
-              "duration": 1804,
+              "duration": 1911,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -414,20 +414,20 @@
               "context": null,
               "code": "cy.visit('/entry_ad');\ncy.log('Close the entry ad');\ncy.contains('Close').click().should('not.be.visible');",
               "err": {},
-              "uuid": "bf51f393-a73d-4c76-8912-fcaba8a5ec3a",
-              "parentUUID": "f62ee160-bf2b-47d8-9602-415e71240520",
+              "uuid": "8ad993fd-608f-47fd-b2b6-189f352de15f",
+              "parentUUID": "a2bf2d29-450b-4eda-97fd-7fea6ed5aa72",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "bf51f393-a73d-4c76-8912-fcaba8a5ec3a"
+            "8ad993fd-608f-47fd-b2b6-189f352de15f"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 1804,
+          "duration": 1911,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -443,7 +443,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "0f7c6463-6005-4e30-a19c-410484ae036f",
+      "uuid": "e8cfd470-60d0-43c3-b9e6-7ab3bd6838c5",
       "title": "",
       "fullFile": "cypress/e2e/drop_down.cy.js",
       "file": "cypress/e2e/drop_down.cy.js",
@@ -452,7 +452,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "4793680d-3b31-4f14-9874-f5191bf30571",
+          "uuid": "d2779f3f-9529-4de8-8263-0a74efe62917",
           "title": "Drop Down",
           "fullFile": "",
           "file": "",
@@ -463,7 +463,7 @@
               "title": "Select and verify dropdowns",
               "fullTitle": "Drop Down Select and verify dropdowns",
               "timedOut": null,
-              "duration": 1786,
+              "duration": 1809,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -472,20 +472,20 @@
               "context": null,
               "code": "cy.visit('/dropdown');\ncy.log('Select by value').get('select').select('1').should('have.value', '1');\ncy.log('Check selected option').get('select#dropdown option:selected').should('have.value', '1').should('have.text', 'Option 1');\ncy.log('Select by index').get('select').select(2).should('have.value', '2');\ncy.log('Check selected option').get('select#dropdown option:selected').should('have.value', '2').should('have.text', 'Option 2');\ncy.log('Select by text').get('select').select('Option 1').should('have.value', '1');\ncy.log('Check selected option').get('select#dropdown option:selected').should('have.value', '1').should('have.text', 'Option 1');",
               "err": {},
-              "uuid": "3c536fc5-23e9-42b2-a700-f2b9d694024d",
-              "parentUUID": "4793680d-3b31-4f14-9874-f5191bf30571",
+              "uuid": "fb669c4f-9d0b-4bee-bd5e-3d7ca834cbdc",
+              "parentUUID": "d2779f3f-9529-4de8-8263-0a74efe62917",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "3c536fc5-23e9-42b2-a700-f2b9d694024d"
+            "fb669c4f-9d0b-4bee-bd5e-3d7ca834cbdc"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 1786,
+          "duration": 1809,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -501,7 +501,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "91d3e199-0bce-4db3-afd4-453c0e559b48",
+      "uuid": "32e67f3f-cda3-4d22-a42f-77fec9951f04",
       "title": "",
       "fullFile": "cypress/e2e/dynamic_content.cy.js",
       "file": "cypress/e2e/dynamic_content.cy.js",
@@ -510,7 +510,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "e1cfa8dc-a193-4e0c-9147-29126b4c241d",
+          "uuid": "dc75894a-7d32-4685-8a7c-52b48960d25b",
           "title": "Dynamic Content",
           "fullFile": "",
           "file": "",
@@ -521,7 +521,7 @@
               "title": "Validate dynamic content",
               "fullTitle": "Dynamic Content Validate dynamic content",
               "timedOut": null,
-              "duration": 1738,
+              "duration": 1843,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -530,20 +530,20 @@
               "context": null,
               "code": "let dynamicImgSrcAttrFirstVisit = [];\nlet dynamicTrimContentFirstVisit = [];\ncy.visit('/dynamic_content');\ncy.log(`Store all the dynamic images' src attributes at first visit`);\ncy.get('.large-2 img').then($imgFirstVisit => {\n  dynamicImgSrcAttrFirstVisit = Array.from($imgFirstVisit, img => img.src);\n});\ncy.log(`Store all the dynamic contents at first visit`);\ncy.get('.large-2 + .large-10').then($contentFirstVisit => {\n  dynamicTrimContentFirstVisit = Array.from($contentFirstVisit, element => element.innerText.trim());\n});\ncy.log('Refresh the page');\ncy.reload();\ncy.log(`Store all the dynamic images' src attributes at second visit and compare with first`);\ncy.get('.large-2 img').then($imgSecondVisit => {\n  const dynamicImgSrcAttrSecondVisit = Array.from($imgSecondVisit, img => img.src);\n  expect(dynamicImgSrcAttrSecondVisit).not.to.deep.eq(dynamicImgSrcAttrFirstVisit);\n});\ncy.log(`Store all the dynamic contents at second visit and compare with first`);\ncy.get('.large-2 + .large-10').then($contentSecondVisit => {\n  const dynamicTrimContentSecondVisit = Array.from($contentSecondVisit, element => element.innerText.trim());\n  expect(dynamicTrimContentFirstVisit).not.to.deep.eq(dynamicTrimContentSecondVisit);\n});",
               "err": {},
-              "uuid": "fad3b052-c3f2-4038-ad52-c902d946347d",
-              "parentUUID": "e1cfa8dc-a193-4e0c-9147-29126b4c241d",
+              "uuid": "ab01eb1e-e40b-49be-a370-ce449789131c",
+              "parentUUID": "dc75894a-7d32-4685-8a7c-52b48960d25b",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "fad3b052-c3f2-4038-ad52-c902d946347d"
+            "ab01eb1e-e40b-49be-a370-ce449789131c"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 1738,
+          "duration": 1843,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -559,7 +559,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "53d644a2-b7f0-44d7-a43a-b6e709afff10",
+      "uuid": "20dd30a3-a460-4a2d-b067-473b62aea2e2",
       "title": "",
       "fullFile": "cypress/e2e/drag_and_drop.cy.js",
       "file": "cypress/e2e/drag_and_drop.cy.js",
@@ -568,7 +568,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "0cada063-bd14-49f8-955b-36cf7070d9d1",
+          "uuid": "4ad27530-2313-47b8-af20-99993a2ebb60",
           "title": "Drag and Drop",
           "fullFile": "",
           "file": "",
@@ -579,7 +579,7 @@
               "title": "Drag and drop",
               "fullTitle": "Drag and Drop Drag and drop",
               "timedOut": null,
-              "duration": 1175,
+              "duration": 1226,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -588,20 +588,20 @@
               "context": null,
               "code": "cy.visit('/drag_and_drop');\ncy.log('Mouse drag and drop with data transfer');\ncy.contains('A').trigger('dragstart', {\n  dataTransfer\n});\ncy.contains('B').trigger('drop', {\n  dataTransfer\n});",
               "err": {},
-              "uuid": "e9f1ac34-0331-49fb-b1e2-a343cdf6c0f9",
-              "parentUUID": "0cada063-bd14-49f8-955b-36cf7070d9d1",
+              "uuid": "1938a467-5647-47b1-9367-7393faae62eb",
+              "parentUUID": "4ad27530-2313-47b8-af20-99993a2ebb60",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "e9f1ac34-0331-49fb-b1e2-a343cdf6c0f9"
+            "1938a467-5647-47b1-9367-7393faae62eb"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 1175,
+          "duration": 1226,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -617,7 +617,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "d4403725-860d-41e4-b26e-2982a3a80ecf",
+      "uuid": "1fcdbd24-52c4-4791-850a-e5910223f12d",
       "title": "",
       "fullFile": "cypress/e2e/file_download.cy.js",
       "file": "cypress/e2e/file_download.cy.js",
@@ -626,7 +626,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "6e2f7972-cd28-4e4c-851e-2d7cb90bc1eb",
+          "uuid": "62bf0fcc-d184-4c1d-8320-8404f0bf95a6",
           "title": "File Download",
           "fullFile": "",
           "file": "",
@@ -637,7 +637,7 @@
               "title": "Verify file download test for dynamic file",
               "fullTitle": "File Download Verify file download test for dynamic file",
               "timedOut": null,
-              "duration": 7681,
+              "duration": 6581,
               "state": "passed",
               "speed": "medium",
               "pass": true,
@@ -646,20 +646,20 @@
               "context": null,
               "code": "cy.visit('/download'); // Added the following logic based on this issue: https://github.com/cypress-io/cypress/issues/14857#issuecomment-785717474\ncy.log(`Added event listener 'click' to listen & trigger the page load event`).window().document().then(doc => {\n  doc.addEventListener('click', () => {\n    setTimeout(() => {\n      doc.location.reload();\n    }, 3000);\n  });\n});\ncy.log('Create downloads folder').exec('mkdir cypress/downloads', {\n  log: true,\n  failOnNonZeroExit: false // Not to fail if the command exits with a non-zero code\n});\ncy.log('Added this defensive code to avoid test failure when executing the tests in interactive mode').exec('rm cypress/downloads/*', {\n  log: true,\n  failOnNonZeroExit: false\n});\ncy.log(`Verify the file presence based on the count logic in the 'downloads' directory by comparing before file download vs after file download`).task('dynamicFiledownload', 'cypress/downloads').then(before => {\n  cy.contains('.txt').click();\n  cy.task('dynamicFiledownload', 'cypress/downloads').then(after => {\n    expect(after.length).to.be.eq(before.length + 1);\n    const downloadedFileName = after.filter(file => !before.includes(file))[0];\n    expect(downloadedFileName).includes('.txt');\n  });\n});",
               "err": {},
-              "uuid": "813dd7ec-ce57-4f5e-b5de-e2458714ebfc",
-              "parentUUID": "6e2f7972-cd28-4e4c-851e-2d7cb90bc1eb",
+              "uuid": "d1e27845-2ed8-4d25-8df0-67634ae56af4",
+              "parentUUID": "62bf0fcc-d184-4c1d-8320-8404f0bf95a6",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "813dd7ec-ce57-4f5e-b5de-e2458714ebfc"
+            "d1e27845-2ed8-4d25-8df0-67634ae56af4"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 7681,
+          "duration": 6581,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -675,7 +675,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "323fc9c7-9de4-42b6-83ba-817f2921d364",
+      "uuid": "e3415a9c-1e94-4f58-ab88-017904293723",
       "title": "",
       "fullFile": "cypress/e2e/floating_menu.cy.js",
       "file": "cypress/e2e/floating_menu.cy.js",
@@ -684,7 +684,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "ce2c856e-b1ab-47f2-9e59-dcf74ea494ce",
+          "uuid": "fa4dd593-6fcc-4811-b460-ad981369b149",
           "title": "Floating Menu",
           "fullFile": "",
           "file": "",
@@ -695,7 +695,7 @@
               "title": "Validate floating menu",
               "fullTitle": "Floating Menu Validate floating menu",
               "timedOut": null,
-              "duration": 1882,
+              "duration": 1295,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -704,20 +704,20 @@
               "context": null,
               "code": "cy.visit('/floating_menu');\ncy.get('#page-footer').scrollIntoView();\ncy.contains('About').should('be.visible').click();\ncy.log(\"Verify current URL has endpoint '#about'\");\ncy.hash().should('contains', '#about');",
               "err": {},
-              "uuid": "c2e220f0-2ffc-4933-991b-898c8f0bbf8d",
-              "parentUUID": "ce2c856e-b1ab-47f2-9e59-dcf74ea494ce",
+              "uuid": "8290a7d2-002e-4f8a-8846-38edee705781",
+              "parentUUID": "fa4dd593-6fcc-4811-b460-ad981369b149",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "c2e220f0-2ffc-4933-991b-898c8f0bbf8d"
+            "8290a7d2-002e-4f8a-8846-38edee705781"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 1882,
+          "duration": 1295,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -733,7 +733,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "17623887-4bca-4adf-b643-86b93bbc4a2b",
+      "uuid": "db216d83-a7a6-4619-8f69-f7a52a7c6f7b",
       "title": "",
       "fullFile": "cypress/e2e/jquery_ui_menus.cy.js",
       "file": "cypress/e2e/jquery_ui_menus.cy.js",
@@ -742,7 +742,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "c573dc11-f868-4351-bb13-adf6f6993fb4",
+          "uuid": "09ffbf21-4ca6-4c17-8634-0d6e60512a9b",
           "title": "JQuery UI Menus",
           "fullFile": "",
           "file": "",
@@ -753,7 +753,7 @@
               "title": "Validate JQuery UI menus",
               "fullTitle": "JQuery UI Menus Validate JQuery UI menus",
               "timedOut": null,
-              "duration": 6302,
+              "duration": 6078,
               "state": "passed",
               "speed": "medium",
               "pass": true,
@@ -762,20 +762,20 @@
               "context": null,
               "code": "cy.visit('/jqueryui/menu'); // Added the following logic based on this issue: https://github.com/cypress-io/cypress/issues/14857#issuecomment-785717474\ncy.log(`Added event listener 'click' to listen & trigger the page load event`).window().document().then(doc => {\n  doc.addEventListener('click', () => {\n    setTimeout(() => {\n      doc.location.reload();\n    }, 3000);\n  });\n});\ncy.contains('Enabled').trigger('mouseover');\ncy.contains('Downloads').trigger('mouseover').next('ul.ui-menu').then($thirdSubMenu => {\n  cy.wrap($thirdSubMenu).invoke('show');\n  cy.wrap($thirdSubMenu).contains('PDF').click();\n});\ncy.log('Verify downloaded PDF file existance').readFile(path.join(downloadsFolder, 'menu.pdf')).should('exist');",
               "err": {},
-              "uuid": "4cc9e55c-1810-4e8f-b075-4fbe1c33e7f0",
-              "parentUUID": "c573dc11-f868-4351-bb13-adf6f6993fb4",
+              "uuid": "b1411365-7043-47c8-bbba-881c9fabc0c3",
+              "parentUUID": "09ffbf21-4ca6-4c17-8634-0d6e60512a9b",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "4cc9e55c-1810-4e8f-b075-4fbe1c33e7f0"
+            "b1411365-7043-47c8-bbba-881c9fabc0c3"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 6302,
+          "duration": 6078,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -791,7 +791,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "19b6cb85-8dca-4640-893a-f07c71f3a579",
+      "uuid": "2e499e7f-6752-4770-ad42-57eddebfe23b",
       "title": "",
       "fullFile": "cypress/e2e/inputs.cy.js",
       "file": "cypress/e2e/inputs.cy.js",
@@ -800,7 +800,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "b04d2de8-ddec-4c34-bc87-09b967d632f7",
+          "uuid": "92ff1d00-2b22-4365-a6f7-71ae8180ca3e",
           "title": "Inputs",
           "fullFile": "",
           "file": "",
@@ -811,7 +811,7 @@
               "title": "Validate input field",
               "fullTitle": "Inputs Validate input field",
               "timedOut": null,
-              "duration": 1446,
+              "duration": 1649,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -820,20 +820,20 @@
               "context": null,
               "code": "cy.visit('/inputs');\ncy.log('Should not accept text').get('input').type('Hello!').should('not.have.value', 'Hello!');\ncy.log('Should only accept numeric value').get('input').type(123).should('have.value', 123);",
               "err": {},
-              "uuid": "450b29d2-0dc2-4d52-ba63-490e72e0c01a",
-              "parentUUID": "b04d2de8-ddec-4c34-bc87-09b967d632f7",
+              "uuid": "94d32198-3a02-4aac-a8f5-b481cf199841",
+              "parentUUID": "92ff1d00-2b22-4365-a6f7-71ae8180ca3e",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "450b29d2-0dc2-4d52-ba63-490e72e0c01a"
+            "94d32198-3a02-4aac-a8f5-b481cf199841"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 1446,
+          "duration": 1649,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -849,7 +849,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "07087952-da3e-432c-acb5-9c32781414ea",
+      "uuid": "11d9711c-633b-4e1f-bc78-d2dd9621a69b",
       "title": "",
       "fullFile": "cypress/e2e/hovers.cy.js",
       "file": "cypress/e2e/hovers.cy.js",
@@ -858,7 +858,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "faededd3-033c-495a-8eae-b6a92e27e014",
+          "uuid": "39447184-623c-4a49-8b08-4a2c162510f6",
           "title": "Hovers",
           "fullFile": "",
           "file": "",
@@ -869,7 +869,7 @@
               "title": "Validate hovers",
               "fullTitle": "Hovers Validate hovers",
               "timedOut": null,
-              "duration": 1121,
+              "duration": 1241,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -878,20 +878,20 @@
               "context": null,
               "code": "cy.visit('/hovers');\ncy.log('Mouse hover');\ncy.get('.figcaption').first().invoke('show');\ncy.get('.figcaption').first().contains('h5', 'name: user1').should('be.visible');\ncy.contains('a', 'View profile').should('be.visible');",
               "err": {},
-              "uuid": "0cf5d28a-b7dd-4892-890d-c6db904e70f0",
-              "parentUUID": "faededd3-033c-495a-8eae-b6a92e27e014",
+              "uuid": "161a825a-d6c1-4ad9-900d-57ea9bd0122f",
+              "parentUUID": "39447184-623c-4a49-8b08-4a2c162510f6",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "0cf5d28a-b7dd-4892-890d-c6db904e70f0"
+            "161a825a-d6c1-4ad9-900d-57ea9bd0122f"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 1121,
+          "duration": 1241,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -907,7 +907,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "6311f41c-7fe5-424c-b16e-175fac888739",
+      "uuid": "aa07e6a4-f620-4b32-8de8-8d2bd35618c4",
       "title": "",
       "fullFile": "cypress/e2e/infinite_scroll.cy.js",
       "file": "cypress/e2e/infinite_scroll.cy.js",
@@ -916,7 +916,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "3d472396-418b-421c-8060-2aa0fcd92b08",
+          "uuid": "6e029f5a-387e-43a5-9a6d-cb99ba057d38",
           "title": "Infinite Scroll",
           "fullFile": "",
           "file": "",
@@ -927,7 +927,7 @@
               "title": "Infinite scroll",
               "fullTitle": "Infinite Scroll Infinite scroll",
               "timedOut": null,
-              "duration": 3078,
+              "duration": 4047,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -936,20 +936,20 @@
               "context": null,
               "code": "cy.log('Spying network request & apply aliases').intercept('/infinite_scroll/**').as('paragraph');\ncy.visit('/infinite_scroll');\ncy.wrap(indexArray).each(index => {\n  cy.log(`Scroll to bottom with ${index + 1} time`);\n  cy.log('Wait for the network request').wait('@paragraph');\n  cy.window().scrollTo('bottom');\n});\ncy.get('.jscroll-added').its('length').should('eq', givenArraySize);",
               "err": {},
-              "uuid": "fe568ac8-26f4-4260-875e-197d39317ba1",
-              "parentUUID": "3d472396-418b-421c-8060-2aa0fcd92b08",
+              "uuid": "97ac59c0-57e4-48c0-a7b7-7cb5349e781b",
+              "parentUUID": "6e029f5a-387e-43a5-9a6d-cb99ba057d38",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "fe568ac8-26f4-4260-875e-197d39317ba1"
+            "97ac59c0-57e4-48c0-a7b7-7cb5349e781b"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 3078,
+          "duration": 4047,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -965,7 +965,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "a29d2e11-d1ad-41a6-a446-17559222df3d",
+      "uuid": "86f11dbb-a8b8-4bdf-88c7-2a6c2f2cec4a",
       "title": "",
       "fullFile": "cypress/e2e/geolocation.cy.js",
       "file": "cypress/e2e/geolocation.cy.js",
@@ -974,7 +974,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "d84e1eb7-0ef2-40af-b804-524e2148be5e",
+          "uuid": "a97e7833-38ae-4a31-bd78-db31a1196e94",
           "title": "Geolocation",
           "fullFile": "",
           "file": "",
@@ -985,7 +985,7 @@
               "title": "Validate GeoLocation",
               "fullTitle": "Geolocation Validate GeoLocation",
               "timedOut": null,
-              "duration": 1394,
+              "duration": 1571,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -994,20 +994,20 @@
               "context": null,
               "code": "cy.log('Customize Geo-Location in Chrome Browser');\ncy.visit('/geolocation');\ncy.log('Mocking Geolocation');\ncy.window().then($window => {\n  cy.stub($window.navigator.geolocation, 'getCurrentPosition').callsFake(callback => {\n    return callback({\n      coords: {\n        latitude,\n        longitude\n      }\n    });\n  });\n});\ncy.contains('Where am I?').click().should('be.visible');\ncy.contains(latitude).should('be.visible');\ncy.contains(longitude).should('be.visible');",
               "err": {},
-              "uuid": "944ccc17-979b-4177-afdd-cfca04241065",
-              "parentUUID": "d84e1eb7-0ef2-40af-b804-524e2148be5e",
+              "uuid": "afa82187-761c-446c-83de-9f3f0fe12947",
+              "parentUUID": "a97e7833-38ae-4a31-bd78-db31a1196e94",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "944ccc17-979b-4177-afdd-cfca04241065"
+            "afa82187-761c-446c-83de-9f3f0fe12947"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 1394,
+          "duration": 1571,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -1023,7 +1023,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "222c70ec-aec6-40f0-b02c-10db812af276",
+      "uuid": "db6b694b-9f65-455d-95f9-5a5bc1baac61",
       "title": "",
       "fullFile": "cypress/e2e/key_presses.cy.js",
       "file": "cypress/e2e/key_presses.cy.js",
@@ -1032,7 +1032,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "dda2978e-9f06-4474-acf2-06cda55020fe",
+          "uuid": "9be9826e-d597-441b-a01c-a7227c6c4dd0",
           "title": "Key Presses",
           "fullFile": "",
           "file": "",
@@ -1043,7 +1043,7 @@
               "title": "Verify key presses",
               "fullTitle": "Key Presses Verify key presses",
               "timedOut": null,
-              "duration": 2132,
+              "duration": 1271,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -1052,20 +1052,20 @@
               "context": null,
               "code": "cy.visit('/key_presses');\ncy.log(\"Type 'Hello' then click backspace key\").get('#target').type('Hello{backspace}');\ncy.get('#result').should('have.text', 'You entered: BACK_SPACE');",
               "err": {},
-              "uuid": "c6a24e7d-659f-473e-b0ee-ceb7a16215ad",
-              "parentUUID": "dda2978e-9f06-4474-acf2-06cda55020fe",
+              "uuid": "9278199d-89be-4697-a16d-98a2aec83886",
+              "parentUUID": "9be9826e-d597-441b-a01c-a7227c6c4dd0",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "c6a24e7d-659f-473e-b0ee-ceb7a16215ad"
+            "9278199d-89be-4697-a16d-98a2aec83886"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 2132,
+          "duration": 1271,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -1081,7 +1081,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "fe805030-7f95-4249-9ebc-c8d113593fd0",
+      "uuid": "ac9576ef-0f3d-4885-95e4-c8aa47fce37d",
       "title": "",
       "fullFile": "cypress/e2e/status_codes.cy.js",
       "file": "cypress/e2e/status_codes.cy.js",
@@ -1090,7 +1090,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "454db47a-c598-463f-bba7-12362acb73b5",
+          "uuid": "3fdfe937-1200-4976-a9e9-569d1e9dac25",
           "title": "Status Codes",
           "fullFile": "",
           "file": "",
@@ -1101,7 +1101,7 @@
               "title": "Validate all status codes",
               "fullTitle": "Status Codes Validate all status codes",
               "timedOut": null,
-              "duration": 1950,
+              "duration": 1638,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -1110,20 +1110,20 @@
               "context": null,
               "code": "cy.visit('/status_codes');\nstatus_codes.forEach(status_code => {\n  // To not to fail the test, on response codes other than 2xx and 3xx then pass failOnStatusCode: false\n  cy.request({\n    url: `/status_codes/${status_code}`,\n    failOnStatusCode: false\n  }).then(response => {\n    expect(response.status).to.eq(status_code);\n    expect(response.body).to.include(`a ${status_code} status code`);\n  });\n});",
               "err": {},
-              "uuid": "88bef39f-3e11-4f81-a6b0-d8f489f807b7",
-              "parentUUID": "454db47a-c598-463f-bba7-12362acb73b5",
+              "uuid": "12322808-9893-4434-80c1-8b5985c77fef",
+              "parentUUID": "3fdfe937-1200-4976-a9e9-569d1e9dac25",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "88bef39f-3e11-4f81-a6b0-d8f489f807b7"
+            "12322808-9893-4434-80c1-8b5985c77fef"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 1950,
+          "duration": 1638,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -1139,7 +1139,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "00bef746-312e-4fed-93d8-79ff33167053",
+      "uuid": "80e611aa-e92b-4e34-94d0-27982f8603d2",
       "title": "",
       "fullFile": "cypress/e2e/multiple_tabs.cy.js",
       "file": "cypress/e2e/multiple_tabs.cy.js",
@@ -1148,7 +1148,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "3737ee41-7d14-4d74-b27c-737db2d67d8a",
+          "uuid": "b3c47c17-b651-43fb-ace4-30b854968ab0",
           "title": "Multiple Tabs",
           "fullFile": "",
           "file": "",
@@ -1159,7 +1159,7 @@
               "title": "Navigate to multiple tabs & verify",
               "fullTitle": "Multiple Tabs Navigate to multiple tabs & verify",
               "timedOut": null,
-              "duration": 1557,
+              "duration": 1849,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -1168,20 +1168,20 @@
               "context": null,
               "code": "cy.visit('/windows');\ncy.contains('Click Here').invoke('removeAttr', 'target').click().url().should('include', '/windows/new').get('h3').should('have.text', 'New Window'); // Navigate back to the previous or next URL in the browser’s history.\ncy.go('back');\ncy.contains('Click Here').should('be.visible');",
               "err": {},
-              "uuid": "9d95a323-5f5b-4641-91f6-24ca88f8394a",
-              "parentUUID": "3737ee41-7d14-4d74-b27c-737db2d67d8a",
+              "uuid": "4bcfb01e-9062-46bf-88a9-55e46413256b",
+              "parentUUID": "b3c47c17-b651-43fb-ace4-30b854968ab0",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "9d95a323-5f5b-4641-91f6-24ca88f8394a"
+            "4bcfb01e-9062-46bf-88a9-55e46413256b"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 1557,
+          "duration": 1849,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -1197,7 +1197,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "2ef2c64b-ed58-428b-bd2f-3a38f4990013",
+      "uuid": "1a359a23-c0b0-460b-bc0c-b9e3d4082dba",
       "title": "",
       "fullFile": "cypress/e2e/nested_frames.cy.js",
       "file": "cypress/e2e/nested_frames.cy.js",
@@ -1206,7 +1206,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "dcd41c5b-dc13-40e3-a6ec-83b9d2b3905f",
+          "uuid": "2f6e5dec-ece0-4799-b403-a08e9734118a",
           "title": "Nested Frames",
           "fullFile": "",
           "file": "",
@@ -1217,7 +1217,7 @@
               "title": "Validate nested frames in the page with Jquery API contents() way",
               "fullTitle": "Nested Frames Validate nested frames in the page with Jquery API contents() way",
               "timedOut": null,
-              "duration": 1000,
+              "duration": 1320,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -1226,20 +1226,20 @@
               "context": null,
               "code": "cy.visit('/nested_frames');\nlocators.forEach(locator => {\n  if (locator !== 'bottom') {\n    cy.get('frame[src=\"/frame_top\"]').within($frame => {\n      cy.wrap($frame.contents().find(`frame[src=\"/frame_${locator}\"]`)).within(frame => {\n        cy.wrap(frame.contents().find('body')).invoke('text').then(frameBodyText => {\n          actualFramesContent.push(frameBodyText.trim());\n        });\n      });\n    });\n  } else {\n    cy.get('frame[src=\"/frame_bottom\"]').within($frame => {\n      cy.wrap($frame.contents()).within(frame => {\n        cy.wrap(frame.contents().find('body')).invoke('text').then(frameBodyText => {\n          actualFramesContent.push(frameBodyText.trim());\n        });\n      });\n    });\n  }\n});\ncy.wrap(actualFramesContent).should('have.ordered.members', expectedFramesContent);",
               "err": {},
-              "uuid": "205fa43b-e745-4817-88f2-7e3c334f42d2",
-              "parentUUID": "dcd41c5b-dc13-40e3-a6ec-83b9d2b3905f",
+              "uuid": "a90f0122-0977-48f1-8c91-3e7b9c960153",
+              "parentUUID": "2f6e5dec-ece0-4799-b403-a08e9734118a",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "205fa43b-e745-4817-88f2-7e3c334f42d2"
+            "a90f0122-0977-48f1-8c91-3e7b9c960153"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 1000,
+          "duration": 1320,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -1255,7 +1255,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "649a6436-d6fe-4d68-aca5-25be1d6577d3",
+      "uuid": "30473498-0a11-4ceb-97b8-38c37cf3f9a1",
       "title": "",
       "fullFile": "cypress/e2e/login_data_driven.cy.js",
       "file": "cypress/e2e/login_data_driven.cy.js",
@@ -1264,7 +1264,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "0039199f-4fe6-4df9-8f57-9954883d29cc",
+          "uuid": "d24bbc36-b07c-43a8-8bdd-7ccd8f54dd84",
           "title": "Login Data Driven",
           "fullFile": "",
           "file": "",
@@ -1275,7 +1275,7 @@
               "title": "Validate data driven login page with two users",
               "fullTitle": "Login Data Driven Validate data driven login page with two users",
               "timedOut": null,
-              "duration": 5135,
+              "duration": 5017,
               "state": "passed",
               "speed": "medium",
               "pass": true,
@@ -1284,20 +1284,20 @@
               "context": null,
               "code": "cy.visit('/login');\ncy.log('Checking for positive & negative user');\nusers.forEach(user => {\n  cy.get('#username').type(user.username);\n  cy.get('#password').type(user.password).get('.fa').click().should('be.visible');\n  if (user.username == 'tomsmith' && user.password == 'SuperSecretPassword!') {\n    cy.get('h2').should('have.text', ' Secure Area');\n    cy.contains('Logout').click();\n  } else {\n    cy.get('#flash').should('contain', 'Your username is invalid!');\n  }\n});",
               "err": {},
-              "uuid": "fb85a3d5-5a98-46bc-991f-e5537d24d80a",
-              "parentUUID": "0039199f-4fe6-4df9-8f57-9954883d29cc",
+              "uuid": "0cb557be-bf12-4193-bc9f-a8c6e0619750",
+              "parentUUID": "d24bbc36-b07c-43a8-8bdd-7ccd8f54dd84",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "fb85a3d5-5a98-46bc-991f-e5537d24d80a"
+            "0cb557be-bf12-4193-bc9f-a8c6e0619750"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 5135,
+          "duration": 5017,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -1313,7 +1313,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "766d73e2-5ca1-448f-8a88-0dbd80a6b8c9",
+      "uuid": "19723a8b-f2be-47db-bc54-dd9321900f35",
       "title": "",
       "fullFile": "cypress/e2e/screenshot.cy.js",
       "file": "cypress/e2e/screenshot.cy.js",
@@ -1322,7 +1322,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "b364f8dd-6410-4222-a471-d4545779d909",
+          "uuid": "92a5e213-2fc2-4410-a138-bc5bccb9f60f",
           "title": "Screenshot",
           "fullFile": "",
           "file": "",
@@ -1333,7 +1333,7 @@
               "title": "Take screenshort",
               "fullTitle": "Screenshot Take screenshort",
               "timedOut": null,
-              "duration": 2124,
+              "duration": 2752,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -1342,20 +1342,20 @@
               "context": "{\n  \"title\": \"cypress-mochawesome-reporter-screenshots\",\n  \"value\": [\n    [\n      {\n        \"title\": \"Screenshot\",\n        \"value\": \"/screenshot.cy.js/Screenshot -- Take screenshort.png\"\n      }\n    ]\n  ]\n}",
               "code": "cy.visit('/');\ncy.log('Takes full page screenshot');\ncy.screenshot();\ncy.log('By default, Cypress automatically takes a screenshot when there is a failure when running cypress run');",
               "err": {},
-              "uuid": "e415f725-33e0-47eb-802d-8dd27e293895",
-              "parentUUID": "b364f8dd-6410-4222-a471-d4545779d909",
+              "uuid": "d66871c2-0ce8-44a6-a242-e729fb592c0c",
+              "parentUUID": "92a5e213-2fc2-4410-a138-bc5bccb9f60f",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "e415f725-33e0-47eb-802d-8dd27e293895"
+            "d66871c2-0ce8-44a6-a242-e729fb592c0c"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 2124,
+          "duration": 2752,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -1371,7 +1371,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "0ab8fd88-69f0-4337-b865-6c846fe52511",
+      "uuid": "c1b8749b-74ce-4f3b-a7c7-c55947fde27f",
       "title": "",
       "fullFile": "cypress/e2e/file_upload.cy.js",
       "file": "cypress/e2e/file_upload.cy.js",
@@ -1380,7 +1380,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "ed33d7eb-005c-41c9-8a45-a17f22f3fea1",
+          "uuid": "e7c5781d-dd4f-4b25-b0d7-24b8d15ca749",
           "title": "File Upload",
           "fullFile": "",
           "file": "",
@@ -1391,7 +1391,7 @@
               "title": "Upload file",
               "fullTitle": "File Upload Upload file",
               "timedOut": null,
-              "duration": 2391,
+              "duration": 3130,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -1400,8 +1400,8 @@
               "context": null,
               "code": "cy.get('#file-upload').selectFile(filePath).get('#file-submit').click().get('#uploaded-files').contains(filePath).should('be.visible');",
               "err": {},
-              "uuid": "f6cfd005-a0ac-4bbf-ac48-7d5784b392c4",
-              "parentUUID": "ed33d7eb-005c-41c9-8a45-a17f22f3fea1",
+              "uuid": "dcae9292-0b6d-49c6-8290-087b92bb2e7e",
+              "parentUUID": "e7c5781d-dd4f-4b25-b0d7-24b8d15ca749",
               "isHook": false,
               "skipped": false
             },
@@ -1409,7 +1409,7 @@
               "title": "Drag and drop file",
               "fullTitle": "File Upload Drag and drop file",
               "timedOut": null,
-              "duration": 431,
+              "duration": 613,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -1418,21 +1418,21 @@
               "context": null,
               "code": "cy.get('#drag-drop-upload').selectFile(filePath, {\n  action: 'drag-drop'\n}).contains(filePath).should('be.visible');",
               "err": {},
-              "uuid": "d99a22f2-2797-41cc-9180-92405f1c7270",
-              "parentUUID": "ed33d7eb-005c-41c9-8a45-a17f22f3fea1",
+              "uuid": "ee0beaf3-1b03-4c71-8774-f77059a1226d",
+              "parentUUID": "e7c5781d-dd4f-4b25-b0d7-24b8d15ca749",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "f6cfd005-a0ac-4bbf-ac48-7d5784b392c4",
-            "d99a22f2-2797-41cc-9180-92405f1c7270"
+            "dcae9292-0b6d-49c6-8290-087b92bb2e7e",
+            "ee0beaf3-1b03-4c71-8774-f77059a1226d"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 2822,
+          "duration": 3743,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -1448,7 +1448,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "c72f6e00-fdd3-4c85-a308-1e8270cf9108",
+      "uuid": "849ba7cd-534d-4da3-bd86-dd2ae8a09112",
       "title": "",
       "fullFile": "cypress/e2e/ab_testing.cy.js",
       "file": "cypress/e2e/ab_testing.cy.js",
@@ -1457,7 +1457,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "223e9549-35b4-4a70-aaf6-42494a5478c0",
+          "uuid": "fdaeed55-ff3e-475c-a169-7764b1ad86cf",
           "title": "A/B Testing",
           "fullFile": "",
           "file": "",
@@ -1468,7 +1468,7 @@
               "title": "Validate A/B testing with cookie",
               "fullTitle": "A/B Testing Validate A/B testing with cookie",
               "timedOut": null,
-              "duration": 2136,
+              "duration": 1914,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -1477,8 +1477,8 @@
               "context": null,
               "code": "cy.visit('/abtest');\ncy.log('Asserting the header test before adding cookie');\ncy.contains('A/B Test').should('be.visible');\ncy.log('Set Cookie').setCookie('optimizelyOptOut', 'true');\ncy.log('Refresh the page').reload();\ncy.log('Asserting the header test after adding cookie');\ncy.contains('No A/B Test').should('be.visible');",
               "err": {},
-              "uuid": "f0d8cf72-24d5-4b27-a618-fef7441c69c1",
-              "parentUUID": "223e9549-35b4-4a70-aaf6-42494a5478c0",
+              "uuid": "c3b8f17d-2418-4a61-9ef5-7bc9390fdca5",
+              "parentUUID": "fdaeed55-ff3e-475c-a169-7764b1ad86cf",
               "isHook": false,
               "skipped": false
             },
@@ -1486,7 +1486,7 @@
               "title": "Validate A/B testing with opt out URL",
               "fullTitle": "A/B Testing Validate A/B testing with opt out URL",
               "timedOut": null,
-              "duration": 664,
+              "duration": 424,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -1495,21 +1495,21 @@
               "context": null,
               "code": "cy.visit('/abtest?optimizely_opt_out=true');\ncy.log('Handle alert');\ncy.on('window:alert', alertText => {\n  expect(alertText).eq('You have successfully opted out of Optimizely for this domain.');\n});\ncy.contains('No A/B Test').should('be.visible');",
               "err": {},
-              "uuid": "ad92242b-e822-4318-b15d-dd5529800af0",
-              "parentUUID": "223e9549-35b4-4a70-aaf6-42494a5478c0",
+              "uuid": "dfac107e-247b-4780-bb9d-8031e752ce36",
+              "parentUUID": "fdaeed55-ff3e-475c-a169-7764b1ad86cf",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "f0d8cf72-24d5-4b27-a618-fef7441c69c1",
-            "ad92242b-e822-4318-b15d-dd5529800af0"
+            "c3b8f17d-2418-4a61-9ef5-7bc9390fdca5",
+            "dfac107e-247b-4780-bb9d-8031e752ce36"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 2800,
+          "duration": 2338,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -1525,7 +1525,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "82f70f5f-a6d0-4058-965b-ea81d936deeb",
+      "uuid": "afe62790-e38c-4ebf-aa74-d06a6565df7c",
       "title": "",
       "fullFile": "cypress/e2e/dynamic_loading.cy.js",
       "file": "cypress/e2e/dynamic_loading.cy.js",
@@ -1534,7 +1534,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "f3f8cf32-c35c-4bc5-aa13-fc8c6e935d2a",
+          "uuid": "90ddafab-ce80-47f3-b38d-d65ed33421fc",
           "title": "Dynamic Loading",
           "fullFile": "",
           "file": "",
@@ -1545,7 +1545,7 @@
               "title": "Validate Dynamic Loading - assert the hidden element",
               "fullTitle": "Dynamic Loading Validate Dynamic Loading - assert the hidden element",
               "timedOut": null,
-              "duration": 7549,
+              "duration": 8190,
               "state": "passed",
               "speed": "medium",
               "pass": true,
@@ -1554,8 +1554,8 @@
               "context": null,
               "code": "cy.get('[href=\"/dynamic_loading/1\"]').contains('Example 1').click().get('h4').contains('Example 1: Element on page that is hidden').should('be.visible');\ncy.get('#finish').invoke('show').should('be.visible');\ncy.contains('Start').click().get('#loading').contains('Loading', {\n  timeout: 20000\n}).should('not.be.visible').get('#finish').contains('Hello World!').should('be.visible');",
               "err": {},
-              "uuid": "71bc281d-4f9c-497f-b863-1a61988a030d",
-              "parentUUID": "f3f8cf32-c35c-4bc5-aa13-fc8c6e935d2a",
+              "uuid": "3d768fea-90db-417e-be63-9de97a4a3c05",
+              "parentUUID": "90ddafab-ce80-47f3-b38d-d65ed33421fc",
               "isHook": false,
               "skipped": false
             },
@@ -1563,7 +1563,7 @@
               "title": "Validate Dynamic Loading - wait till element rendered",
               "fullTitle": "Dynamic Loading Validate Dynamic Loading - wait till element rendered",
               "timedOut": null,
-              "duration": 5845,
+              "duration": 6172,
               "state": "passed",
               "speed": "medium",
               "pass": true,
@@ -1572,21 +1572,21 @@
               "context": null,
               "code": "cy.get('[href=\"/dynamic_loading/2\"]').contains('Example 2').click().get('h4').contains('Example 2: Element rendered after the fact').should('be.visible');\ncy.contains('Start').click().get('#loading').contains('Loading', {\n  timeout: 20000\n}).should('not.be.visible').get('#finish').contains('Hello World!').should('be.visible');",
               "err": {},
-              "uuid": "42ffbe1b-727c-46eb-b083-686f0c46d90a",
-              "parentUUID": "f3f8cf32-c35c-4bc5-aa13-fc8c6e935d2a",
+              "uuid": "5a4749bd-942a-4461-8a2e-ac9016cc4f29",
+              "parentUUID": "90ddafab-ce80-47f3-b38d-d65ed33421fc",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "71bc281d-4f9c-497f-b863-1a61988a030d",
-            "42ffbe1b-727c-46eb-b083-686f0c46d90a"
+            "3d768fea-90db-417e-be63-9de97a4a3c05",
+            "5a4749bd-942a-4461-8a2e-ac9016cc4f29"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 13394,
+          "duration": 14362,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -1602,7 +1602,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "3feeef9d-5003-4735-b528-20589146ae41",
+      "uuid": "b7a5ca5f-964c-4f92-aa12-26ec50cb2cf2",
       "title": "",
       "fullFile": "cypress/e2e/javascript_alerts.cy.js",
       "file": "cypress/e2e/javascript_alerts.cy.js",
@@ -1611,7 +1611,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "7e5318ac-615e-4507-bfc2-c03c12491290",
+          "uuid": "3d83619b-6b53-4e39-8f81-2b8e993262f0",
           "title": "Javascript Alerts",
           "fullFile": "",
           "file": "",
@@ -1622,7 +1622,7 @@
               "title": "Validate alert box",
               "fullTitle": "Javascript Alerts Validate alert box",
               "timedOut": null,
-              "duration": 2043,
+              "duration": 2178,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -1631,8 +1631,8 @@
               "context": null,
               "code": "cy.contains('Click for JS Alert').click().should('be.visible');\ncy.on('window:alert', alertText => {\n  expect(alertText).eq('I am a JS Alert');\n});\ncy.get('#result').contains('You successfully clicked an alert').should('be.visible');",
               "err": {},
-              "uuid": "fa1ab17b-34f9-40c2-bcb5-3fca10de0082",
-              "parentUUID": "7e5318ac-615e-4507-bfc2-c03c12491290",
+              "uuid": "930faa56-4fcb-48c5-ab35-c75be50787b0",
+              "parentUUID": "3d83619b-6b53-4e39-8f81-2b8e993262f0",
               "isHook": false,
               "skipped": false
             },
@@ -1640,7 +1640,7 @@
               "title": "Validate confirm box",
               "fullTitle": "Javascript Alerts Validate confirm box",
               "timedOut": null,
-              "duration": 583,
+              "duration": 664,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -1649,8 +1649,8 @@
               "context": null,
               "code": "cy.contains('Click for JS Confirm').click().should('be.visible');\ncy.on('window:confirm', alertText => {\n  expect(alertText).eq('I am a JS Confirm');\n  return true; // By default, Cypress will automatically hit \"Ok\" for alert confirmation and no need to explicitly return true in this event callback\n  // If we wanted to instead test a use case of someone clicking \"Cancel\", then we need to return false in this event callback\n});\ncy.get('#result').contains('You clicked: Ok').should('be.visible');",
               "err": {},
-              "uuid": "d994639a-e9bb-4928-aeac-8c0a7c801f51",
-              "parentUUID": "7e5318ac-615e-4507-bfc2-c03c12491290",
+              "uuid": "60d81468-5c36-4819-b919-946c17c1fb05",
+              "parentUUID": "3d83619b-6b53-4e39-8f81-2b8e993262f0",
               "isHook": false,
               "skipped": false
             },
@@ -1658,7 +1658,7 @@
               "title": "Validate prompt box",
               "fullTitle": "Javascript Alerts Validate prompt box",
               "timedOut": null,
-              "duration": 573,
+              "duration": 615,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -1667,22 +1667,22 @@
               "context": null,
               "code": "cy.window().then($win => {\n  cy.stub($win, 'prompt').returns('Hello Hi!!');\n  cy.contains('Click for JS Prompt').click().should('be.visible');\n});\ncy.get('#result').contains('You entered: Hello Hi!!').should('be.visible');",
               "err": {},
-              "uuid": "c42291c9-556e-4509-9688-9ee190b78259",
-              "parentUUID": "7e5318ac-615e-4507-bfc2-c03c12491290",
+              "uuid": "9f7c57f5-56c1-41a6-8a8e-3e717e759cd6",
+              "parentUUID": "3d83619b-6b53-4e39-8f81-2b8e993262f0",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "fa1ab17b-34f9-40c2-bcb5-3fca10de0082",
-            "d994639a-e9bb-4928-aeac-8c0a7c801f51",
-            "c42291c9-556e-4509-9688-9ee190b78259"
+            "930faa56-4fcb-48c5-ab35-c75be50787b0",
+            "60d81468-5c36-4819-b919-946c17c1fb05",
+            "9f7c57f5-56c1-41a6-8a8e-3e717e759cd6"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 3199,
+          "duration": 3457,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -1698,7 +1698,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "e889f06c-2674-49bd-99c6-3231f80e1373",
+      "uuid": "117baa43-ce4a-45e2-9514-a19ec6f386f0",
       "title": "",
       "fullFile": "cypress/e2e/forgot_password.cy.js",
       "file": "cypress/e2e/forgot_password.cy.js",
@@ -1707,7 +1707,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "4ced4b36-970b-4d9e-baaa-280a093b823c",
+          "uuid": "709f463c-442b-436a-ab9e-8243229b65f8",
           "title": "Forgot Password",
           "fullFile": "",
           "file": "",
@@ -1718,7 +1718,7 @@
               "title": "Validate forgot password with API approach",
               "fullTitle": "Forgot Password Validate forgot password with API approach",
               "timedOut": null,
-              "duration": 1010,
+              "duration": 906,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -1727,12 +1727,12 @@
               "context": "[\n  {\n    \"title\": \"cypress-mochawesome-reporter-screenshots\",\n    \"value\": [\n      [\n        {\n          \"title\": \"Failed screenshot\",\n          \"value\": \"/forgot_password.cy.js/Forgot Password -- Validate forgot password with API approach (failed).png\"\n        }\n      ]\n    ]\n  },\n  \"Forgot Password -- Validate forgot password with API approach (failed).png\",\n  \"videos/forgot_password.cy.js.mp4\"\n]",
               "code": "cy.request({\n  method: 'POST',\n  url: '/forgot_password',\n  // BaseUrl is prepend to URL\n  form: true,\n  // Indicates the body should be form urlencoded and sets Content-Type: application/x-www-form-urlencoded headers\n  body: {\n    email: 'test@mail.com'\n  }\n}).then(response => {\n  expect(response.status).to.eq(200); // Expect to fail as currently application throws 500 error\n});",
               "err": {
-                "message": "CypressError: `cy.request()` failed on:\n\nhttps://the-internet.herokuapp.com/forgot_password\n\nThe response we received from your web server was:\n\n  > 500: Internal Server Error\n\nThis was considered a failure because the status code was not `2xx` or `3xx`.\n\nIf you do not want status codes to cause failures pass the option: `failOnStatusCode: false`\n\n-----------------------------------------------------------\n\nThe request we sent was:\n\nMethod: POST\nURL: https://the-internet.herokuapp.com/forgot_password\nHeaders: {\n  \"Connection\": \"keep-alive\",\n  \"user-agent\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Cypress/10.8.0 Chrome/102.0.5005.148 Electron/19.0.8 Safari/537.36\",\n  \"accept\": \"*/*\",\n  \"content-type\": \"application/x-www-form-urlencoded\",\n  \"accept-encoding\": \"gzip, deflate\",\n  \"content-length\": 21\n}\nBody: email=test%40mail.com\n\n-----------------------------------------------------------\n\nThe response we got was:\n\nStatus: 500 - Internal Server Error\nHeaders: {\n  \"connection\": \"keep-alive\",\n  \"content-type\": \"text/html;charset=utf-8\",\n  \"content-length\": \"30\",\n  \"x-xss-protection\": \"1; mode=block\",\n  \"x-content-type-options\": \"nosniff\",\n  \"x-frame-options\": \"SAMEORIGIN\",\n  \"server\": \"WEBrick/1.6.0 (Ruby/2.7.2/2020-10-01)\",\n  \"date\": \"Thu, 27 Oct 2022 10:14:31 GMT\",\n  \"set-cookie\": [\n    \"rack.session=BAh7CEkiD3Nlc3Npb25faWQGOgZFVEkiRWYzMGFmNmYyZmY0YWNkNmRjZGQ1%0AMjZiMWY3NTkyZWEwMjIxZjcyNTQ1NWUyNzY2ZTBjZWEzY2IyMDA3YzNlZWYG%0AOwBGSSIJY3NyZgY7AEZJIiU1MGFlMzFhZGIxY2E2MDZkOWQ1OGQ1Nzc4N2Mx%0AZmJjMgY7AEZJIg10cmFja2luZwY7AEZ7B0kiFEhUVFBfVVNFUl9BR0VOVAY7%0AAFRJIi1hMjJmYTAzZDNlY2UwNTJhMGU0YzljYjM3NDM4MjNkNjFhNWY4MmQx%0ABjsARkkiGUhUVFBfQUNDRVBUX0xBTkdVQUdFBjsAVEkiLWRhMzlhM2VlNWU2%0AYjRiMGQzMjU1YmZlZjk1NjAxODkwYWZkODA3MDkGOwBG%0A--d963e1fd15b0edc487c38e4d62529fc893a3d7ec; path=/; HttpOnly\"\n  ],\n  \"via\": \"1.1 vegur\"\n}\nBody: <h1>Internal Server Error</h1>\n\n\nhttps://on.cypress.io/request",
-                "estack": "CypressError: `cy.request()` failed on:\n\nhttps://the-internet.herokuapp.com/forgot_password\n\nThe response we received from your web server was:\n\n  > 500: Internal Server Error\n\nThis was considered a failure because the status code was not `2xx` or `3xx`.\n\nIf you do not want status codes to cause failures pass the option: `failOnStatusCode: false`\n\n-----------------------------------------------------------\n\nThe request we sent was:\n\nMethod: POST\nURL: https://the-internet.herokuapp.com/forgot_password\nHeaders: {\n  \"Connection\": \"keep-alive\",\n  \"user-agent\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Cypress/10.8.0 Chrome/102.0.5005.148 Electron/19.0.8 Safari/537.36\",\n  \"accept\": \"*/*\",\n  \"content-type\": \"application/x-www-form-urlencoded\",\n  \"accept-encoding\": \"gzip, deflate\",\n  \"content-length\": 21\n}\nBody: email=test%40mail.com\n\n-----------------------------------------------------------\n\nThe response we got was:\n\nStatus: 500 - Internal Server Error\nHeaders: {\n  \"connection\": \"keep-alive\",\n  \"content-type\": \"text/html;charset=utf-8\",\n  \"content-length\": \"30\",\n  \"x-xss-protection\": \"1; mode=block\",\n  \"x-content-type-options\": \"nosniff\",\n  \"x-frame-options\": \"SAMEORIGIN\",\n  \"server\": \"WEBrick/1.6.0 (Ruby/2.7.2/2020-10-01)\",\n  \"date\": \"Thu, 27 Oct 2022 10:14:31 GMT\",\n  \"set-cookie\": [\n    \"rack.session=BAh7CEkiD3Nlc3Npb25faWQGOgZFVEkiRWYzMGFmNmYyZmY0YWNkNmRjZGQ1%0AMjZiMWY3NTkyZWEwMjIxZjcyNTQ1NWUyNzY2ZTBjZWEzY2IyMDA3YzNlZWYG%0AOwBGSSIJY3NyZgY7AEZJIiU1MGFlMzFhZGIxY2E2MDZkOWQ1OGQ1Nzc4N2Mx%0AZmJjMgY7AEZJIg10cmFja2luZwY7AEZ7B0kiFEhUVFBfVVNFUl9BR0VOVAY7%0AAFRJIi1hMjJmYTAzZDNlY2UwNTJhMGU0YzljYjM3NDM4MjNkNjFhNWY4MmQx%0ABjsARkkiGUhUVFBfQUNDRVBUX0xBTkdVQUdFBjsAVEkiLWRhMzlhM2VlNWU2%0AYjRiMGQzMjU1YmZlZjk1NjAxODkwYWZkODA3MDkGOwBG%0A--d963e1fd15b0edc487c38e4d62529fc893a3d7ec; path=/; HttpOnly\"\n  ],\n  \"via\": \"1.1 vegur\"\n}\nBody: <h1>Internal Server Error</h1>\n\n\nhttps://on.cypress.io/request\n    at <unknown> (https://the-internet.herokuapp.com/__cypress/runner/cypress_runner.js:143968:80)\n    at tryCatcher (https://the-internet.herokuapp.com/__cypress/runner/cypress_runner.js:11318:23)\n    at Promise._settlePromiseFromHandler (https://the-internet.herokuapp.com/__cypress/runner/cypress_runner.js:9253:31)\n    at Promise._settlePromise (https://the-internet.herokuapp.com/__cypress/runner/cypress_runner.js:9310:18)\n    at Promise._settlePromise0 (https://the-internet.herokuapp.com/__cypress/runner/cypress_runner.js:9355:10)\n    at Promise._settlePromises (https://the-internet.herokuapp.com/__cypress/runner/cypress_runner.js:9435:18)\n    at _drainQueueStep (https://the-internet.herokuapp.com/__cypress/runner/cypress_runner.js:6025:12)\n    at _drainQueue (https://the-internet.herokuapp.com/__cypress/runner/cypress_runner.js:6018:9)\n    at ../../node_modules/bluebird/js/release/async.js.Async._drainQueues (https://the-internet.herokuapp.com/__cypress/runner/cypress_runner.js:6034:5)\n    at Async.drainQueues (https://the-internet.herokuapp.com/__cypress/runner/cypress_runner.js:5904:14)\nFrom Your Spec Code:\n    at Context.eval (webpack:///./cypress/e2e/forgot_password.cy.js:3:7)",
+                "message": "CypressError: `cy.request()` failed on:\n\nhttps://the-internet.herokuapp.com/forgot_password\n\nThe response we received from your web server was:\n\n  > 500: Internal Server Error\n\nThis was considered a failure because the status code was not `2xx` or `3xx`.\n\nIf you do not want status codes to cause failures pass the option: `failOnStatusCode: false`\n\n-----------------------------------------------------------\n\nThe request we sent was:\n\nMethod: POST\nURL: https://the-internet.herokuapp.com/forgot_password\nHeaders: {\n  \"Connection\": \"keep-alive\",\n  \"user-agent\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Cypress/10.8.0 Chrome/102.0.5005.148 Electron/19.0.8 Safari/537.36\",\n  \"accept\": \"*/*\",\n  \"content-type\": \"application/x-www-form-urlencoded\",\n  \"accept-encoding\": \"gzip, deflate\",\n  \"content-length\": 21\n}\nBody: email=test%40mail.com\n\n-----------------------------------------------------------\n\nThe response we got was:\n\nStatus: 500 - Internal Server Error\nHeaders: {\n  \"connection\": \"keep-alive\",\n  \"content-type\": \"text/html;charset=utf-8\",\n  \"content-length\": \"30\",\n  \"x-xss-protection\": \"1; mode=block\",\n  \"x-content-type-options\": \"nosniff\",\n  \"x-frame-options\": \"SAMEORIGIN\",\n  \"server\": \"WEBrick/1.6.0 (Ruby/2.7.2/2020-10-01)\",\n  \"date\": \"Thu, 27 Oct 2022 10:33:39 GMT\",\n  \"set-cookie\": [\n    \"rack.session=BAh7CEkiD3Nlc3Npb25faWQGOgZFVEkiRTI5NDUxOGFhMDE1N2M2NzJiNGM5%0AZmQyODJkYjhkNzM5NmI0MzkzZjZlMDUyMjQzNjM5OWZkY2M1Y2RlNmYwMTgG%0AOwBGSSIJY3NyZgY7AEZJIiU4MjRkZTIzMjQ1N2RlMjhkMDhjOTkyZjBlZWY2%0AY2U5MgY7AEZJIg10cmFja2luZwY7AEZ7B0kiFEhUVFBfVVNFUl9BR0VOVAY7%0AAFRJIi1hMjJmYTAzZDNlY2UwNTJhMGU0YzljYjM3NDM4MjNkNjFhNWY4MmQx%0ABjsARkkiGUhUVFBfQUNDRVBUX0xBTkdVQUdFBjsAVEkiLWRhMzlhM2VlNWU2%0AYjRiMGQzMjU1YmZlZjk1NjAxODkwYWZkODA3MDkGOwBG%0A--c913f52ae46b31d856cf631d9c1253ff299fd9cd; path=/; HttpOnly\"\n  ],\n  \"via\": \"1.1 vegur\"\n}\nBody: <h1>Internal Server Error</h1>\n\n\nhttps://on.cypress.io/request",
+                "estack": "CypressError: `cy.request()` failed on:\n\nhttps://the-internet.herokuapp.com/forgot_password\n\nThe response we received from your web server was:\n\n  > 500: Internal Server Error\n\nThis was considered a failure because the status code was not `2xx` or `3xx`.\n\nIf you do not want status codes to cause failures pass the option: `failOnStatusCode: false`\n\n-----------------------------------------------------------\n\nThe request we sent was:\n\nMethod: POST\nURL: https://the-internet.herokuapp.com/forgot_password\nHeaders: {\n  \"Connection\": \"keep-alive\",\n  \"user-agent\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Cypress/10.8.0 Chrome/102.0.5005.148 Electron/19.0.8 Safari/537.36\",\n  \"accept\": \"*/*\",\n  \"content-type\": \"application/x-www-form-urlencoded\",\n  \"accept-encoding\": \"gzip, deflate\",\n  \"content-length\": 21\n}\nBody: email=test%40mail.com\n\n-----------------------------------------------------------\n\nThe response we got was:\n\nStatus: 500 - Internal Server Error\nHeaders: {\n  \"connection\": \"keep-alive\",\n  \"content-type\": \"text/html;charset=utf-8\",\n  \"content-length\": \"30\",\n  \"x-xss-protection\": \"1; mode=block\",\n  \"x-content-type-options\": \"nosniff\",\n  \"x-frame-options\": \"SAMEORIGIN\",\n  \"server\": \"WEBrick/1.6.0 (Ruby/2.7.2/2020-10-01)\",\n  \"date\": \"Thu, 27 Oct 2022 10:33:39 GMT\",\n  \"set-cookie\": [\n    \"rack.session=BAh7CEkiD3Nlc3Npb25faWQGOgZFVEkiRTI5NDUxOGFhMDE1N2M2NzJiNGM5%0AZmQyODJkYjhkNzM5NmI0MzkzZjZlMDUyMjQzNjM5OWZkY2M1Y2RlNmYwMTgG%0AOwBGSSIJY3NyZgY7AEZJIiU4MjRkZTIzMjQ1N2RlMjhkMDhjOTkyZjBlZWY2%0AY2U5MgY7AEZJIg10cmFja2luZwY7AEZ7B0kiFEhUVFBfVVNFUl9BR0VOVAY7%0AAFRJIi1hMjJmYTAzZDNlY2UwNTJhMGU0YzljYjM3NDM4MjNkNjFhNWY4MmQx%0ABjsARkkiGUhUVFBfQUNDRVBUX0xBTkdVQUdFBjsAVEkiLWRhMzlhM2VlNWU2%0AYjRiMGQzMjU1YmZlZjk1NjAxODkwYWZkODA3MDkGOwBG%0A--c913f52ae46b31d856cf631d9c1253ff299fd9cd; path=/; HttpOnly\"\n  ],\n  \"via\": \"1.1 vegur\"\n}\nBody: <h1>Internal Server Error</h1>\n\n\nhttps://on.cypress.io/request\n    at <unknown> (https://the-internet.herokuapp.com/__cypress/runner/cypress_runner.js:143968:80)\n    at tryCatcher (https://the-internet.herokuapp.com/__cypress/runner/cypress_runner.js:11318:23)\n    at Promise._settlePromiseFromHandler (https://the-internet.herokuapp.com/__cypress/runner/cypress_runner.js:9253:31)\n    at Promise._settlePromise (https://the-internet.herokuapp.com/__cypress/runner/cypress_runner.js:9310:18)\n    at Promise._settlePromise0 (https://the-internet.herokuapp.com/__cypress/runner/cypress_runner.js:9355:10)\n    at Promise._settlePromises (https://the-internet.herokuapp.com/__cypress/runner/cypress_runner.js:9435:18)\n    at _drainQueueStep (https://the-internet.herokuapp.com/__cypress/runner/cypress_runner.js:6025:12)\n    at _drainQueue (https://the-internet.herokuapp.com/__cypress/runner/cypress_runner.js:6018:9)\n    at ../../node_modules/bluebird/js/release/async.js.Async._drainQueues (https://the-internet.herokuapp.com/__cypress/runner/cypress_runner.js:6034:5)\n    at Async.drainQueues (https://the-internet.herokuapp.com/__cypress/runner/cypress_runner.js:5904:14)\nFrom Your Spec Code:\n    at Context.eval (webpack:///./cypress/e2e/forgot_password.cy.js:3:7)",
                 "diff": null
               },
-              "uuid": "bb315915-aba9-4459-93e5-44e7024b1b33",
-              "parentUUID": "4ced4b36-970b-4d9e-baaa-280a093b823c",
+              "uuid": "63695727-a8fd-4ee4-9bb9-1febb8570a45",
+              "parentUUID": "709f463c-442b-436a-ab9e-8243229b65f8",
               "isHook": false,
               "skipped": false
             },
@@ -1740,7 +1740,7 @@
               "title": "Validate forgot password with UI approach",
               "fullTitle": "Forgot Password Validate forgot password with UI approach",
               "timedOut": null,
-              "duration": 13428,
+              "duration": 12824,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -1753,8 +1753,8 @@
                 "estack": "AssertionError: Timed out retrying after 10000ms: Expected to find content: 'Your e-mail's been sent!' within the selector: '#content' but never did.\n    at Context.eval (webpack:///./cypress/e2e/forgot_password.cy.js:23:7)",
                 "diff": null
               },
-              "uuid": "3a5bb148-cba5-4636-b415-42fb79313713",
-              "parentUUID": "4ced4b36-970b-4d9e-baaa-280a093b823c",
+              "uuid": "23b7818d-fb33-4969-b7e6-5acd5c0ade4c",
+              "parentUUID": "709f463c-442b-436a-ab9e-8243229b65f8",
               "isHook": false,
               "skipped": false
             }
@@ -1762,12 +1762,12 @@
           "suites": [],
           "passes": [],
           "failures": [
-            "bb315915-aba9-4459-93e5-44e7024b1b33",
-            "3a5bb148-cba5-4636-b415-42fb79313713"
+            "63695727-a8fd-4ee4-9bb9-1febb8570a45",
+            "23b7818d-fb33-4969-b7e6-5acd5c0ade4c"
           ],
           "pending": [],
           "skipped": [],
-          "duration": 14438,
+          "duration": 13730,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -1783,7 +1783,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "2ad7a211-0c50-4827-b280-727389265be1",
+      "uuid": "4b3d9976-2162-4eda-af78-76d47dcdf1cf",
       "title": "",
       "fullFile": "cypress/e2e/horizontal_slider.cy.js",
       "file": "cypress/e2e/horizontal_slider.cy.js",
@@ -1792,7 +1792,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "309771d6-ddf6-4213-a9c4-e17a2374f6a6",
+          "uuid": "14338024-7423-429a-9701-600f914852e7",
           "title": "Horizontal Slider",
           "fullFile": "",
           "file": "",
@@ -1803,7 +1803,7 @@
               "title": "Validate horizontal silder - click on slider",
               "fullTitle": "Horizontal Slider Validate horizontal silder - click on slider",
               "timedOut": null,
-              "duration": 2010,
+              "duration": 1799,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -1812,8 +1812,8 @@
               "context": null,
               "code": "cy.get('input').invoke('val', '2').trigger('change').get('#range').should('have.text', '2');",
               "err": {},
-              "uuid": "4503fcb5-9621-478e-b490-5ea9fe0c84cb",
-              "parentUUID": "309771d6-ddf6-4213-a9c4-e17a2374f6a6",
+              "uuid": "2a83ded4-7939-4e66-b6b0-6173346cad53",
+              "parentUUID": "14338024-7423-429a-9701-600f914852e7",
               "isHook": false,
               "skipped": false
             },
@@ -1821,7 +1821,7 @@
               "title": "Validate horizontal silder - key strokes",
               "fullTitle": "Horizontal Slider Validate horizontal silder - key strokes",
               "timedOut": null,
-              "duration": 777,
+              "duration": 722,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -1830,21 +1830,21 @@
               "context": null,
               "code": "cy.get('input').focus().type(Cypress._.repeat('{rightarrow}-{enter}', 5)) // Pressing right arrow key for 5 times\n.trigger('change').get('#range').should('have.text', '2.5');",
               "err": {},
-              "uuid": "e93e36ef-226f-4417-af69-9f6ff1442732",
-              "parentUUID": "309771d6-ddf6-4213-a9c4-e17a2374f6a6",
+              "uuid": "d5debd1c-43e1-4e78-9c83-500c5d08f7fe",
+              "parentUUID": "14338024-7423-429a-9701-600f914852e7",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "4503fcb5-9621-478e-b490-5ea9fe0c84cb",
-            "e93e36ef-226f-4417-af69-9f6ff1442732"
+            "2a83ded4-7939-4e66-b6b0-6173346cad53",
+            "d5debd1c-43e1-4e78-9c83-500c5d08f7fe"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 2787,
+          "duration": 2521,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
