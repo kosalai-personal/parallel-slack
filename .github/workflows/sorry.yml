@@ -16,6 +16,10 @@ jobs:
         uses: cypress-io/github-action@v3
         with:
           runTests: false
+      - name: Cypress clean
+        run: npm run clean:reports
+      - name: Create reports directory
+        run: mkdir reports 
   execution:
     name: Execution ⏳
     needs: setup
@@ -49,6 +53,67 @@ jobs:
         with:
 #           command: "npx percy exec -- npm run sorry-cypress-dashboard"
           command: npx cypress run --spec ${{ env.specs }}
+          browser: chrome
+        continue-on-error: true
+      - name: Copy test execution videos
+        run: |
+          mkdir public
+          cp -r cypress/videos public/videos
+      - name: Upload mochawesome report
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-reports-${{ matrix.containers }}
+          path: mochawesome-report
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Cypress screenshots
+          path: TestReport
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Cypress videos
+          path: public/videos 
+
+  reporting:
+    name: Cypress reporting & deployment 🚀
+    needs: [setup,execution]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: Cypress screenshots
+          path: TestReport
+      - uses: actions/download-artifact@v3
+        with:
+          name: Cypress videos
+          path: public/videos
+      - name: Download test-reports
+        uses: actions/download-artifact@v3
+        with:
+          path: reports/
+      - name: Move all reports into one directory
+        run: |
+          mkdir -p mochawesome-report
+          i=0
+          for file in $(find reports -type f -name mochawesome\*.json); do
+            filename=$(basename "$file" .json)-"$i".json
+            mv "$file" mochawesome-report/"$filename"
+            ls mochawesome-report
+            i=$((i + 1))
+          done
+      - name: Merge and generate reports
+        run: |
+          cp -r TestReport/**/*.png public
+          npx mochawesome-merge > public/index.json
+          npx mochawesome-report-generator --reportDir public public/index.json
+      - name: Slack report
+        run: npx cypress-slack-reporter --ci-provider none --report-dir public 
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Final report
+          path: public
         env:
           CYPRESS_API_URL: ${{ secrets.CYPRESS_API_URL }}
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
