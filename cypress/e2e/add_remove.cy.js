@@ -23,7 +23,5 @@ describe('Add/Remove Elements', () => {
     cy.get("button:contains('Delete')")
       .click({ multiple: true })
       .should('not.exist');
-      cy.percySnapshot();
-
   });
 });
