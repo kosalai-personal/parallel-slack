@@ -5,6 +5,6 @@
 /cypress/videos
 /cypress/reports
 /mochawesome-report
-/TestReport
+/Screenshots
 /runner-results
 /multi-reporter-config.json

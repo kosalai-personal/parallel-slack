@@ -14,7 +14,6 @@
 // ***********************************************************
 
 import './commands';
-import '@percy/cypress';
 
 import addContext from 'mochawesome/addContext';
 import 'cypress-mochawesome-reporter/register';

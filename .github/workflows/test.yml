@@ -51,7 +51,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: Cypress screenshots
-          path: TestReport
+          path: Screenshots
       - uses: actions/upload-artifact@v3
         with:
           name: Cypress videos
@@ -66,7 +66,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: Cypress screenshots
-          path: TestReport
+          path: Screenshots
       - uses: actions/download-artifact@v3
         with:
           name: Cypress videos
@@ -87,9 +87,9 @@ jobs:
           done
       - name: Merge and generate reports
         run: |
-          cp -r TestReport/**/*.png public
-          npx mochawesome-merge > public/index.json
-          npx mochawesome-report-generator --reportDir public public/index.json
+          npm run move
+          npm run merge-reports
+          npm run generate-reports
       - uses: actions/upload-artifact@v3
         with:
           name: Final report
@@ -102,7 +102,7 @@ jobs:
           publish_dir: ./public
       - name: Slack report
         run: |
-          npx cypress-slack-reporter --ci-provider none --report-dir public 
+          npm run slack-report
           curl -X POST -H 'Content-type: application/json' --data '{"text":"*_Here is the generated HTML report!!_*"}' $SLACK_WEBHOOK_URL
           curl -X POST -H 'Content-type: application/json' --data '{"text":"https://kosalai-personal.github.io/parallel-slack/"}' $SLACK_WEBHOOK_URL
         env:
