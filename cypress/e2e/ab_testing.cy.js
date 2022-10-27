@@ -7,7 +7,6 @@ describe('A/B Testing', () => {
     cy.log('Refresh the page').reload();
     cy.log('Asserting the header test after adding cookie');
     cy.contains('No A/B Test').should('be.visible');
-    cy.percySnapshot();
   });
   it('Validate A/B testing with opt out URL', () => {
     cy.visit('/abtest?optimizely_opt_out=true');
