@@ -110,12 +110,19 @@ jobs:
         with:
           name: Final report
           path: public
+      - name: Deploy to GitHub Pages 
+        uses: peaceiris/actions-gh-pages@v3.7.3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./public
       - name: Slack report
-        run: npx cypress-slack-reporter --ci-provider none --report-dir public 
+        run: |
+          npx cypress-slack-reporter --ci-provider none --report-dir public 
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"*_Here is the generated HTML report!!_*"}' $SLACK_WEBHOOK_URL
         env:
 #           CYPRESS_API_URL: ${{ secrets.CYPRESS_API_URL }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
 
 
 
