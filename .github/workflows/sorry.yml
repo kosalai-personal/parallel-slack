@@ -7,6 +7,8 @@ jobs:
   setup:
     name: Install & pre-test 🛠 
     runs-on: ubuntu-latest    
+    container:
+      image: cypress/browsers:node14.17.6-chrome100-ff98
     strategy:
       fail-fast: false 
     steps:
@@ -23,6 +25,8 @@ jobs:
   execution:
     name: Execution ⏳
     needs: setup
+    container:
+      image: cypress/browsers:node14.17.6-chrome100-ff98
     strategy:
       fail-fast: false
       matrix:
