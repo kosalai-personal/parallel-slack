@@ -108,14 +108,13 @@ jobs:
           npx mochawesome-report-generator --reportDir public public/index.json
       - name: Slack report
         run: npx cypress-slack-reporter --ci-provider none --report-dir public 
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       - uses: actions/upload-artifact@v3
         with:
           name: Final report
           path: public
         env:
-          CYPRESS_API_URL: ${{ secrets.CYPRESS_API_URL }}
+#           CYPRESS_API_URL: ${{ secrets.CYPRESS_API_URL }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
 
 
