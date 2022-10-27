@@ -103,7 +103,7 @@ jobs:
       - name: Slack report
         run: |
           npx cypress-slack-reporter --ci-provider none --report-dir public 
-          curl -X POST -H 'Content-type: application/json' --data '{"text":"*_Here is the generated HTML report!!_*"}' $SLACK_WEBHOOK_URL
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"*_Here is the generated HTML report!! 🚀_*"}' $SLACK_WEBHOOK_URL
           curl -X POST -H 'Content-type: application/json' --data '{"text":"https://kosalai-personal.github.io/parallel-slack/"}' $SLACK_WEBHOOK_URL
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
