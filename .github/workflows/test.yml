@@ -87,9 +87,9 @@ jobs:
           done
       - name: Merge and generate reports
         run: |
-          npm run move
-          npm run merge-reports
-          npm run generate-reports
+          cp -r Screenshots/**/*.png public
+          npx mochawesome-merge > public/index.json
+          npx mochawesome-report-generator --reportDir public public/index.json
       - uses: actions/upload-artifact@v3
         with:
           name: Final report
@@ -102,7 +102,7 @@ jobs:
           publish_dir: ./public
       - name: Slack report
         run: |
-          npm run slack-report
+          npx cypress-slack-reporter --ci-provider none --report-dir public 
           curl -X POST -H 'Content-type: application/json' --data '{"text":"*_Here is the generated HTML report!!_*"}' $SLACK_WEBHOOK_URL
           curl -X POST -H 'Content-type: application/json' --data '{"text":"https://kosalai-personal.github.io/parallel-slack/"}' $SLACK_WEBHOOK_URL
         env:
