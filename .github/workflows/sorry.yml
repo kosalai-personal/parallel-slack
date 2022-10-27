@@ -7,8 +7,6 @@ jobs:
   setup:
     name: Install & pre-test 🛠 
     runs-on: ubuntu-latest    
-    container:
-      image: cypress/browsers:node14.17.6-chrome100-ff98
     strategy:
       fail-fast: false 
     steps:
@@ -25,8 +23,6 @@ jobs:
   execution:
     name: Execution ⏳
     needs: setup
-    container:
-      image: cypress/browsers:node14.17.6-chrome100-ff98
     strategy:
       fail-fast: false
       matrix:
@@ -110,12 +106,12 @@ jobs:
           cp -r TestReport/**/*.png public
           npx mochawesome-merge > public/index.json
           npx mochawesome-report-generator --reportDir public public/index.json
-      - name: Slack report
-        run: npx cypress-slack-reporter --ci-provider none --report-dir public 
       - uses: actions/upload-artifact@v3
         with:
           name: Final report
           path: public
+      - name: Slack report
+        run: npx cypress-slack-reporter --ci-provider none --report-dir public 
         env:
 #           CYPRESS_API_URL: ${{ secrets.CYPRESS_API_URL }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
