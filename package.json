@@ -18,7 +18,7 @@
     "move-local": "cp -r Screenshots/**/*.png Screenshots",
     "format": "prettier --write \"**/*.+(js|json|yml|md)\"",
     "move": "cp -r Screenshots/**/*.png public",
-    "merge-reports":"mochawesome-merge > public/index.json",
+    "merge-reports": "mochawesome-merge > public/index.json",
     "generate-report": "mochawesome-report-generator --reportDir public public/index.json",
     "slack-report": "cypress-slack-reporter --ci-provider none --report-dir public"
   },
@@ -36,5 +36,8 @@
     "mochawesome-merge": "^4.1.0",
     "mochawesome-report-generator": "^5.1.0",
     "prettier": "^2.7.1"
+  },
+  "dependencies": {
+    "@slack/web-api": "^6.7.2"
   }
 }
