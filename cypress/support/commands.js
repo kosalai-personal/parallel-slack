@@ -41,5 +41,5 @@
 
 Cypress.Commands.add("move", (label) => {
     console.log(label)
-    cy.exec('npm run move-local');
+    cy.exec('npm run move');
 });

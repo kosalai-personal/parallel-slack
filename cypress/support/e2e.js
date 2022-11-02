@@ -43,21 +43,3 @@ after(() => {
 });
 
 
-./TestReport/cypress-tests-report.html
-
-curl -F file=@TestReport/cypress-tests-report.html -F "initial_comment=Hello" -F channels=C03NKBG3QTF -H "Authorization: Bearer xoxb-2181353489-3901471769702-q3G0lkiDz3gUs1HII9ZWubYA" https://slack.com/api/files.upload
-curl https://slack.com/api/files.upload -F token="xoxb-2181353489-3901471769702-q3G0lkiDz3gUs1HII9ZWubYA" -F channels="C03NKBG3QTF" -F title="html file" -F filename="cypress" -F file=@"test.txt"
-
-
-xoxb-2181353489-3901471769702-q3G0lkiDz3gUs1HII9ZWubYA
-
-curl -F file=@test.txt -F "initial_comment=Shakes the cat" -F channels=C03NKBG3QTF -H "Authorization: Bearer xoxb-2181353489-3901471769702-q3G0lkiDz3gUs1HII9ZWubYA" https://slack.com/api/files.upload
-
-curl \
-  -F token="xoxb-2181353489-4290430402514-zQ7Tt9VMuRIiWfviPu9vjubD" \
-  -F file="@test.txt" \
-  -F channel="C048X221Z89" \
-  https://slack.com/api/files.upload
-
-
-  curl -F file=@test.txt -F "initial_comment=Shakes the cat" -F channel=C048X221Z89 -H "Authorization: Bearer xoxb-2181353489-4290430402514-zQ7Tt9VMuRIiWfviPu9vjubD" https://slack.com/api/files.upload
