@@ -105,7 +105,12 @@ jobs:
           npx cypress-slack-reporter --ci-provider none --report-dir public 
           curl -X POST -H 'Content-type: application/json' --data '{"text":"*_Here is the generated HTML report!! 🚀_*"}' $SLACK_WEBHOOK_URL
           curl -X POST -H 'Content-type: application/json' --data '{"text":"https://kosalai-personal.github.io/parallel-slack/"}' $SLACK_WEBHOOK_URL
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
         env:
+          SLACK_COLOR: ${{ job.status }} 
+          SLACK_MESSAGE: '*_Here is the generated HTML report!! 🚀_*'
+          SLACK_USERNAME: Kosalai
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
 
