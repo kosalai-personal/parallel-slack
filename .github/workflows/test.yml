@@ -3,6 +3,7 @@ on: [push]
 permissions:
   contents: write
   pages: write
+  actions: read
 jobs:
   setup:
     name: Install & pre-test 🛠 
@@ -102,14 +103,14 @@ jobs:
           publish_dir: ./public
       - name: Slack report
         run: |
-          npx cypress-slack-reporter --custom-url https://github.com/kosalai-personal/parallel-slack --ci-provider custom --report-dir public 
+          npx cypress-slack-reporter --ci-provider none --report-dir public 
           curl -X POST -H 'Content-type: application/json' --data '{"text":"*_Here is the generated HTML report!! 🚀_*"}' $SLACK_WEBHOOK_URL
           curl -X POST -H 'Content-type: application/json' --data '{"text":"https://kosalai-personal.github.io/parallel-slack/"}' $SLACK_WEBHOOK_URL
       - name: Slack Workflow Notification
         uses: Gamesight/slack-workflow-status@master
         with:
           repo_token: ${{secrets.GITHUB_TOKEN}}
-          slack_webhook_url: ${{secrets.SLACK_WEBHOOK_URL}}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
