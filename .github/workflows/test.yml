@@ -51,22 +51,11 @@ jobs:
         run: |
           mkdir public
           cp -r cypress/videos public/videos
-          cp -r Screenshots/**/*.png public
       - name: Upload mochawesome report
         uses: actions/upload-artifact@v3
         with:
           name: test-reports-${{ matrix.containers }}
           path: mochawesome-report
-#       - name: Caching screenshots
-#         uses: actions/cache@v3
-#         with:
-#           path: Screenshots  
-#           key: screenshots
-#       - name: Caching videos
-#         uses: actions/cache@v3
-#         with:
-#           path: public/videos   
-#           key: videos
       - uses: actions/upload-artifact@v3
         if: steps.test.outcome == 'failure'
         with:
@@ -84,21 +73,6 @@ jobs:
     if: always()
     runs-on: ubuntu-latest
     steps:
-#       - name: Caching screenshots
-#         uses: actions/cache@v3
-#         with:
-#           path: Screenshots  
-#           key: screenshots
-#       - name: Caching videos
-#         uses: actions/cache@v3
-#         with:
-#           path: public/videos   
-#           key: videos
-#       - name: Check file existence
-#         id: check_files
-#         uses: andstor/file-existence-action@v2
-#         with:
-#           files: "Screenshots, public/videos"
       - uses: actions/download-artifact@v3
         with:
           name: Cypress screenshots
@@ -123,13 +97,9 @@ jobs:
             ls mochawesome-report
             i=$((i + 1))
           done
-#       - name: Check file existence
-#         id: check_files
-#         uses: andstor/file-existence-action@v2
-#         with:
-#           files: "Screenshots"
       - name: Merge and generate reports
         run: |
+          cp -r Screenshots/**/*.png public
           npx mochawesome-merge > public/index.json
           npx mochawesome-report-generator --reportDir public public/index.json
       - uses: actions/upload-artifact@v3
