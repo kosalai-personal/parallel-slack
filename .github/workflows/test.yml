@@ -105,7 +105,6 @@ jobs:
           path: Screenshots
         continue-on-error: true
       - uses: actions/download-artifact@v3
-        if: steps.check_files.outputs.files_exists == 'true'
         with:
           name: Cypress videos
           path: public/videos
