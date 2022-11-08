@@ -67,12 +67,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v3
-        if: steps.test.outcome == 'failure'
+        id: check_files
         with:
           name: Cypress screenshots
           path: Screenshots
       - uses: actions/download-artifact@v3
-        if: steps.test.outcome == 'failure'
         with:
           name: Cypress videos
           path: public/videos
@@ -90,12 +89,10 @@ jobs:
             ls mochawesome-report
             i=$((i + 1))
           done
-      - name: Copy test execution screenshots
-        if: steps.test.outcome == 'failure'
+      - name: Merge and generate reports
+        if: steps.check_files.outputs.files_exists == 'true'
         run: |
           cp -r Screenshots/**/*.png public
-      - name: Merge and generate reports
-        run: |
           npx mochawesome-merge > public/index.json
           npx mochawesome-report-generator --reportDir public public/index.json
       - uses: actions/upload-artifact@v3
