@@ -84,21 +84,6 @@ jobs:
     if: always()
     runs-on: ubuntu-latest
     steps:
-#       - name: Check file existence
-#         id: check_files
-#         uses: andstor/file-existence-action@v2
-#         with:
-#           files: "Screenshots, public/videos"
-#       - uses: actions/download-artifact@v3
-#         if: steps.check_files.outputs.files_exists == 'true'
-#         with:
-#           name: Cypress screenshots
-#           path: Screenshots
-#       - uses: actions/download-artifact@v3
-#         if: steps.check_files.outputs.files_exists == 'true'
-#         with:
-#           name: Cypress videos
-#           path: public/videos
       - name: Caching screenshots
         uses: actions/cache@v3
         with:
@@ -109,6 +94,31 @@ jobs:
         with:
           path: public/videos   
           key: videos
+      - name: Check file existence
+        id: check_files
+        uses: andstor/file-existence-action@v2
+        with:
+          files: "Screenshots, public/videos"
+      - uses: actions/upload-artifact@v3
+        if: steps.check_files.outputs.files_exists == 'true'
+        with:
+          name: Cypress screenshots
+          path: Screenshots
+      - uses: actions/upload-artifact@v3
+        if: steps.check_files.outputs.files_exists == 'true'
+        with:
+          name: Cypress videos
+          path: public/videos 
+#       - uses: actions/download-artifact@v3
+#         if: steps.check_files.outputs.files_exists == 'true'
+#         with:
+#           name: Cypress screenshots
+#           path: Screenshots
+#       - uses: actions/download-artifact@v3
+#         if: steps.check_files.outputs.files_exists == 'true'
+#         with:
+#           name: Cypress videos
+#           path: public/videos
       - name: Download test-reports
         uses: actions/download-artifact@v3
         with:
