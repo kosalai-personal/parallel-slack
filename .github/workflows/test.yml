@@ -94,21 +94,22 @@ jobs:
 #         with:
 #           path: public/videos   
 #           key: videos
-      - name: Check file existence
-        id: check_files
-        uses: andstor/file-existence-action@v2
-        with:
-          files: "Screenshots, public/videos"
+#       - name: Check file existence
+#         id: check_files
+#         uses: andstor/file-existence-action@v2
+#         with:
+#           files: "Screenshots, public/videos"
       - uses: actions/download-artifact@v3
-        if: steps.check_files.outputs.files_exists == 'true'
         with:
           name: Cypress screenshots
           path: Screenshots
+        continue-on-error: true
       - uses: actions/download-artifact@v3
         if: steps.check_files.outputs.files_exists == 'true'
         with:
           name: Cypress videos
           path: public/videos
+        continue-on-error: true
       - name: Download test-reports
         uses: actions/download-artifact@v3
         with:
