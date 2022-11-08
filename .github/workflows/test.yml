@@ -67,7 +67,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v3
-        id: check_files
         with:
           name: Cypress screenshots
           path: Screenshots
@@ -89,6 +88,11 @@ jobs:
             ls mochawesome-report
             i=$((i + 1))
           done
+      - name: Check file existence
+        id: check_files
+        uses: andstor/file-existence-action@v2
+        with:
+          files: "Screenshots"
       - name: Merge and generate reports
         if: steps.check_files.outputs.files_exists == 'true'
         run: |
