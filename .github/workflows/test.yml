@@ -57,26 +57,26 @@ jobs:
         with:
           name: test-reports-${{ matrix.containers }}
           path: mochawesome-report
-      - name: Caching screenshots
-        uses: actions/cache@v3
-        with:
-          path: Screenshots  
-          key: screenshots
-      - name: Caching videos
-        uses: actions/cache@v3
-        with:
-          path: public/videos   
-          key: videos
-#       - uses: actions/upload-artifact@v3
-#         if: steps.test.outcome == 'failure'
+#       - name: Caching screenshots
+#         uses: actions/cache@v3
 #         with:
-#           name: Cypress screenshots
-#           path: Screenshots
-#       - uses: actions/upload-artifact@v3
-#         if: steps.test.outcome == 'failure'
+#           path: Screenshots  
+#           key: screenshots
+#       - name: Caching videos
+#         uses: actions/cache@v3
 #         with:
-#           name: Cypress videos
-#           path: public/videos 
+#           path: public/videos   
+#           key: videos
+      - uses: actions/upload-artifact@v3
+        if: steps.test.outcome == 'failure'
+        with:
+          name: Cypress screenshots
+          path: Screenshots
+      - uses: actions/upload-artifact@v3
+        if: steps.test.outcome == 'failure'
+        with:
+          name: Cypress videos
+          path: public/videos 
           
   reporting:
     name: Cypress reporting & deployment 🚀
@@ -84,41 +84,31 @@ jobs:
     if: always()
     runs-on: ubuntu-latest
     steps:
-      - name: Caching screenshots
-        uses: actions/cache@v3
-        with:
-          path: Screenshots  
-          key: screenshots
-      - name: Caching videos
-        uses: actions/cache@v3
-        with:
-          path: public/videos   
-          key: videos
+#       - name: Caching screenshots
+#         uses: actions/cache@v3
+#         with:
+#           path: Screenshots  
+#           key: screenshots
+#       - name: Caching videos
+#         uses: actions/cache@v3
+#         with:
+#           path: public/videos   
+#           key: videos
       - name: Check file existence
         id: check_files
         uses: andstor/file-existence-action@v2
         with:
           files: "Screenshots, public/videos"
-      - uses: actions/upload-artifact@v3
+      - uses: actions/download-artifact@v3
         if: steps.check_files.outputs.files_exists == 'true'
         with:
           name: Cypress screenshots
           path: Screenshots
-      - uses: actions/upload-artifact@v3
+      - uses: actions/download-artifact@v3
         if: steps.check_files.outputs.files_exists == 'true'
         with:
           name: Cypress videos
-          path: public/videos 
-#       - uses: actions/download-artifact@v3
-#         if: steps.check_files.outputs.files_exists == 'true'
-#         with:
-#           name: Cypress screenshots
-#           path: Screenshots
-#       - uses: actions/download-artifact@v3
-#         if: steps.check_files.outputs.files_exists == 'true'
-#         with:
-#           name: Cypress videos
-#           path: public/videos
+          path: public/videos
       - name: Download test-reports
         uses: actions/download-artifact@v3
         with:
@@ -139,7 +129,6 @@ jobs:
 #         with:
 #           files: "Screenshots"
       - name: Merge and generate reports
-#         if: steps.check_files.outputs.files_exists == 'true'
         run: |
           npx mochawesome-merge > public/index.json
           npx mochawesome-report-generator --reportDir public public/index.json
