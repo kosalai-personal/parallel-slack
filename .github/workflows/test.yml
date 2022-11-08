@@ -20,6 +20,7 @@ jobs:
         run: npm run clean:reports
       - name: Create reports directory
         run: mkdir reports 
+        
   execution:
     name: Execution ⏳
     needs: setup
@@ -59,18 +60,18 @@ jobs:
         with:
           name: Cypress videos
           path: public/videos 
-
+      - name: Check file existence
+        id: check_files
+        uses: andstor/file-existence-action@v2
+        with:
+          files: "Screenshots, public/videos"
+          
   reporting:
     name: Cypress reporting & deployment 🚀
     needs: [setup,execution]
     if: always()
     runs-on: ubuntu-latest
     steps:
-      - name: Check file existence
-        id: check_files
-        uses: andstor/file-existence-action@v2
-        with:
-          files: "Screenshots, public/videos"
       - uses: actions/download-artifact@v3
         if: steps.check_files.outputs.files_exists == 'true'
         with:
