@@ -41,7 +41,13 @@ jobs:
           command: npx cypress run --spec ${{ env.specs }}
           browser: chrome
         continue-on-error: true
+      - name: Check file existence
+        id: check_files
+        uses: andstor/file-existence-action@v2
+        with:
+          files: "Screenshots, cypress/videos"
       - name: Copy test execution screenshots & videos
+        if: steps.check_files.outputs.files_exists == 'true'
         run: |
           mkdir public
           cp -r cypress/videos public/videos
