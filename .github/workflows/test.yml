@@ -50,12 +50,12 @@ jobs:
           name: test-reports-${{ matrix.containers }}
           path: mochawesome-report
       - uses: actions/upload-artifact@v3
-        if: steps.test.outputs.status == 'failure'
+        if: steps.test.outcome == 'failure'
         with:
           name: Cypress screenshots
           path: Screenshots
       - uses: actions/upload-artifact@v3
-        if: steps.test.outputs.status == 'failure'
+        if: steps.test.outcome == 'failure'
         with:
           name: Cypress videos
           path: public/videos 
@@ -67,12 +67,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v3
-        if: steps.test.outputs.status == 'failure'
+        if: steps.test.outcome == 'failure'
         with:
           name: Cypress screenshots
           path: Screenshots
       - uses: actions/download-artifact@v3
-        if: steps.test.outputs.status == 'failure'
+        if: steps.test.outcome == 'failure'
         with:
           name: Cypress videos
           path: public/videos
@@ -90,9 +90,12 @@ jobs:
             ls mochawesome-report
             i=$((i + 1))
           done
-      - name: Merge and generate reports
+      - name: Copy test execution screenshots
+        if: steps.test.outcome == 'failure'
         run: |
           cp -r Screenshots/**/*.png public
+      - name: Merge and generate reports
+        run: |
           npx mochawesome-merge > public/index.json
           npx mochawesome-report-generator --reportDir public public/index.json
       - uses: actions/upload-artifact@v3
