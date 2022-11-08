@@ -35,6 +35,7 @@ jobs:
          echo "specs=$(node cypress-partial.js 6 ${{ matrix.containers }})" >> $GITHUB_ENV
       - name: Cypress run 
         uses: cypress-io/github-action@v3
+        id: test
         with:
           command: npx cypress run --spec ${{ env.specs }}
           browser: chrome
@@ -49,10 +50,12 @@ jobs:
           name: test-reports-${{ matrix.containers }}
           path: mochawesome-report
       - uses: actions/upload-artifact@v3
+        if: steps.test.outputs.status == 'failure'
         with:
           name: Cypress screenshots
           path: Screenshots
       - uses: actions/upload-artifact@v3
+        if: steps.test.outputs.status == 'failure'
         with:
           name: Cypress videos
           path: public/videos 
@@ -64,10 +67,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v3
+        if: steps.test.outputs.status == 'failure'
         with:
           name: Cypress screenshots
           path: Screenshots
       - uses: actions/download-artifact@v3
+        if: steps.test.outputs.status == 'failure'
         with:
           name: Cypress videos
           path: public/videos
@@ -105,13 +110,13 @@ jobs:
           npx cypress-slack-reporter --ci-provider none --report-dir public 
           curl -X POST -H 'Content-type: application/json' --data '{"text":"*_Here is the generated HTML report!! 🚀_*"}' $SLACK_WEBHOOK_URL
           curl -X POST -H 'Content-type: application/json' --data '{"text":"https://kosalai-personal.github.io/parallel-slack/"}' $SLACK_WEBHOOK_URL
-      - uses: ravsamhq/notify-slack-action@v2
-        if: always()
-        with:
-          status: ${{ job.status }}
-          notification_title: "{workflow} has {status_message}"
-          message_format: "{emoji} *{workflow}* {status_message} in <{repo_url}|{repo}>"
-          footer: "Linked Repo <{repo_url}|{repo}>"
+#       - uses: ravsamhq/notify-slack-action@v2
+#         if: always()
+#         with:
+#           status: ${{ job.status }}
+#           notification_title: "{workflow} has {status_message}"
+#           message_format: "{emoji} *{workflow}* {status_message} in <{repo_url}|{repo}>"
+#           footer: "Linked Repo <{repo_url}|{repo}>"
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
