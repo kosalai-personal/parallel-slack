@@ -19,7 +19,7 @@ jobs:
       - name: Cypress clean
         run: npm run clean:reports
       - name: Create reports directory
-        run: mkdir {reports,public}  
+        run: mkdir reports  
         
   execution:
     name: Execution ⏳
@@ -33,7 +33,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - run: |
-         echo "specs=$(node cypress-partial.js 6 ${{ matrix.containers }})" >> $GITHUB_ENV
+          echo "specs=$(node cypress-partial.js 6 ${{ matrix.containers }})" >> $GITHUB_ENV
       - name: Cypress run 
         uses: cypress-io/github-action@v3
         id: test
@@ -43,7 +43,9 @@ jobs:
         continue-on-error: true
       - name: Copy test execution videos
         if: steps.test.outcome == 'failure'
-        run: cp -r cypress/videos public/videos
+        run: |
+          mkdir public
+          cp -r cypress/videos public/videos
       - name: Upload mochawesome report
         uses: actions/upload-artifact@v3
         with:
