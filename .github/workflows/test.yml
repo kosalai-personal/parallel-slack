@@ -45,8 +45,8 @@ jobs:
         id: check_files
         uses: andstor/file-existence-action@v2
         with:
-          files: "Screenshots/**/*.png, cypress/videos"
-      - name: Copy test execution screenshots & videos
+          files: "cypress/videos"
+      - name: Copy test execution videos
         if: steps.check_files.outputs.files_exists == 'true'
         run: |
           mkdir public
@@ -97,9 +97,16 @@ jobs:
             ls mochawesome-report
             i=$((i + 1))
           done
+      - name: Check file existence
+        id: check_files
+        uses: andstor/file-existence-action@v2
+        with:
+          files: "Screenshots/**/*.png"
+      - name: Copy test execution screenshots
+        if: steps.check_files.outputs.files_exists == 'true'
+        run: cp -r Screenshots/**/*.png public
       - name: Merge and generate reports
         run: |
-          cp -r Screenshots/**/*.png public
           npx mochawesome-merge > public/index.json
           npx mochawesome-report-generator --reportDir public public/index.json
       - uses: actions/upload-artifact@v3
