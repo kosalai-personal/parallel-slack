@@ -1,17 +1,25 @@
 const { createReadStream } = require('fs');
-
 const { WebClient } = require('@slack/web-api');
-
-const token = 'xoxb-2181353489-4290430402514-zQ7Tt9VMuRIiWfviPu9vjubD';
-const channelId = 'C048X221Z89';
+const token = 'xoxb-2181353489-3901471769702-oL9SmkQliLXogNFO11VA5xw1';
+const channelId = 'C03NKBG3QTF';
 const web = new WebClient(token);
-
-const uploadFileToSlack = async () => {
-  await web.files.upload({
-    filename: 'testing',
-    file: createReadStream('TestReport/cypress-tests-report.json'),
-    channels: channelId,
+var fs = require('fs');
+var path = require('path');
+var dirPath = path.resolve('Screenshots');
+var filesList;
+fs.readdir(dirPath, function (err, files) {
+  filesList = files.filter(function (e) {
+    return path.extname(e).toLowerCase() === '.png';
   });
-};
-
-uploadFileToSlack();
+  for (const type of filesList) {
+    console.log(`${type}`);
+    const uploadFileToSlack = async () => {
+      await web.files.upload({
+        filename: 'Failed Tests',
+        file: createReadStream(`Screenshots/${type}`),
+        channels: channelId,
+      });
+    };
+    uploadFileToSlack();
+  }
+});
