@@ -1,11 +1,11 @@
 const { createReadStream } = require('fs');
 const { WebClient } = require('@slack/web-api');
-const token = 'xoxb-2181353489-3901471769702-oL9SmkQliLXogNFO11VA5xw1';
+const token = 'xoxb-2181353489-3901471769702-ZNNVtwBU0ohxdNPDOCjL5ccd';
 const channelId = 'C03NKBG3QTF';
 const web = new WebClient(token);
 var fs = require('fs');
 var path = require('path');
-var dirPath = path.resolve('Screenshots');
+var dirPath = path.resolve('public');
 var filesList;
 fs.readdir(dirPath, function (err, files) {
   filesList = files.filter(function (e) {
@@ -16,7 +16,7 @@ fs.readdir(dirPath, function (err, files) {
     const uploadFileToSlack = async () => {
       await web.files.upload({
         filename: 'Failed Tests',
-        file: createReadStream(`Screenshots/${type}`),
+        file: createReadStream(`public/${type}`),
         channels: channelId,
       });
     };
