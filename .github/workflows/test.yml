@@ -92,14 +92,17 @@ jobs:
             ls mochawesome-report
             i=$((i + 1))
           done
+      - name: Copy test execution screenshots
+        run: cp -r Screenshots/**/*.png public
+        continue-on-error: true
       - name: Check file existence
         id: check_files
         uses: andstor/file-existence-action@v2
         with:
-          files: "Screenshots/**/*.png"
-      - name: Copy test execution screenshots
-        if: steps.check_files.outputs.files_exists == 'true'
-        run: cp -r Screenshots/**/*.png public
+          files: "public"
+      - name: Create report directory if not exist
+        if: steps.check_files.outputs.files_exists == 'false'
+        run: mkdir public 
       - name: Merge and generate reports
         run: |
           npx mochawesome-merge > public/index.json
