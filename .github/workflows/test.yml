@@ -1,4 +1,4 @@
-name: Cypress Automated Tests
+name: Cypress Tests
 on: [push]
 permissions:
   contents: write
@@ -6,7 +6,7 @@ permissions:
 jobs:
   setup:
     name: Install & pre-test 🛠 
-    runs-on: ubuntu-latest    
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false 
     steps:
@@ -28,12 +28,12 @@ jobs:
       fail-fast: false
       matrix:
         containers: [ 0, 1, 2, 3, 4, 5 ]
-    runs-on: ubuntu-latest    
+    runs-on: ubuntu-latest   
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - run: |
-          echo "specs=$(node cypress-partial.js 6 ${{ matrix.containers }})" >> $GITHUB_ENV
+          echo "specs=$(node cypress-split.js 6 ${{ matrix.containers }})" >> $GITHUB_ENV
       - name: Cypress run 
         uses: cypress-io/github-action@v3
         id: test
@@ -68,6 +68,12 @@ jobs:
     if: always()
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install
+        uses: cypress-io/github-action@v3
+        with:
+          runTests: false
       - uses: actions/download-artifact@v3
         with:
           name: Cypress screenshots
@@ -86,7 +92,7 @@ jobs:
         run: |
           mkdir -p mochawesome-report
           i=0
-          for file in $(find reports -type f -name mochawesome\*.json); do
+          for file in $(find reports -type f -name mochawesome\*.json);do
             filename=$(basename "$file" .json)-"$i".json
             mv "$file" mochawesome-report/"$filename"
             ls mochawesome-report
@@ -120,10 +126,17 @@ jobs:
       - name: Slack report
         run: |
           npx cypress-slack-reporter --ci-provider none --report-dir public 
-          curl -X POST -H 'Content-type: application/json' --data '{"text":"*_See the failed test screenshots ❌_*"}' $SLACK_WEBHOOK_URL
-          node slack.js
           curl -X POST -H 'Content-type: application/json' --data '{"text":"*_Here is the generated HTML report!! 🚀_*"}' $SLACK_WEBHOOK_URL
           curl -X POST -H 'Content-type: application/json' --data '{"text":"https://kosalai-personal.github.io/parallel-slack/"}' $SLACK_WEBHOOK_URL
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+      - run: |
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"*_See the failed test screenshots ❌_*"}' $SLACK_WEBHOOK_URL
+          npm run slack
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 #       - uses: ravsamhq/notify-slack-action@v2
 #         if: always()
 #         with:
@@ -131,8 +144,7 @@ jobs:
 #           notification_title: "{workflow} has {status_message}"
 #           message_format: "{emoji} *{workflow}* {status_message} in <{repo_url}|{repo}>"
 #           footer: "Linked Repo <{repo_url}|{repo}>"
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
 
 
 

@@ -20,7 +20,8 @@
     "move": "cp -r Screenshots/**/*.png Screenshots",
     "merge-reports": "mochawesome-merge > public/index.json",
     "generate-report": "mochawesome-report-generator --reportDir public public/index.json",
-    "slack-report": "cypress-slack-reporter --ci-provider none --report-dir public"
+    "slack-report": "cypress-slack-reporter --ci-provider none --report-dir public",
+    "slack": "node slack.js"
   },
   "keywords": [],
   "author": "",

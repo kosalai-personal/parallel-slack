@@ -23,7 +23,7 @@ module.exports = defineConfig({
       on('before:run', (details) => {
         if (details.specs && details.browser) {
           // details.specs and details.browser will be undefined in interactive mode
-          console.log(details.specs);
+          // console.log(details.specs);
         }
       });
     },

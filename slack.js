@@ -1,6 +1,6 @@
 const { createReadStream } = require('fs');
 const { WebClient } = require('@slack/web-api');
-const token = 'xoxb-2181353489-3901471769702-QsSWUBJAdOEqKZbq78TdlL9l';
+const token = 'xoxb-2181353489-3901471769702-6a0YxPoDSDAa3TWaqQFoyKU9';
 const channelId = 'C03NKBG3QTF';
 const web = new WebClient(token);
 var fs = require('fs');
